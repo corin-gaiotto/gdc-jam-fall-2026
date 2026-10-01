@@ -1,0 +1,11 @@
+[gd_resource type="BoxMesh" format=3 uid="uid://c1coayajdpvah"]
+
+[ext_resource type="Texture2D" uid="uid://c4e4uoka4rdda" path="res://assets/art/icon.svg" id="1_efyxa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efyxa"]
+albedo_texture = ExtResource("1_efyxa")
+uv1_offset = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+
+[resource]
+material = SubResource("StandardMaterial3D_efyxa")

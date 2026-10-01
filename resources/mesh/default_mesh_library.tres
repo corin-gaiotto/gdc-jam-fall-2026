@@ -1,0 +1,23 @@
+[gd_resource type="MeshLibrary" format=3 uid="uid://dhpmja7p5e7fa"]
+
+[ext_resource type="BoxMesh" uid="uid://c1coayajdpvah" path="res://resources/mesh/test_box.tres" id="1_bbx1n"]
+[ext_resource type="PrismMesh" uid="uid://ynuejkqq0bo3" path="res://resources/mesh/test_ramp.tres" id="2_jbqgw"]
+[ext_resource type="Shape3D" uid="uid://45ehbwupfbu7" path="res://resources/mesh/ramp_shape.tres" id="3_rravu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e2xr7"]
+
+[resource]
+item/0/name = "godot_box"
+item/0/mesh = ExtResource("1_bbx1n")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/mesh_cast_shadow = 1
+item/0/shapes = [SubResource("BoxShape3D_e2xr7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+item/1/name = "godot_ramp"
+item/1/mesh = ExtResource("2_jbqgw")
+item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/mesh_cast_shadow = 1
+item/1/shapes = [ExtResource("3_rravu"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/1/navigation_layers = 1
