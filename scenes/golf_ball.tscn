@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://bjeuxns80ro51"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_2j3k6"]
+radius = 0.125
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ysr2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_2j3k6"]
+material = SubResource("StandardMaterial3D_3ysr2")
+radius = 0.125
+height = 0.25
+
+[node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1042125360]
+shape = SubResource("SphereShape3D_2j3k6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2002016542]
+mesh = SubResource("SphereMesh_2j3k6")
