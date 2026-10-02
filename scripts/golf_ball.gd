@@ -1,14 +1,17 @@
 extends RigidBody3D
 
-@onready var aim_visuals = [$AimVisual1, $AimVisual2, $AimVisual3]
-@onready var aim_shadows = [$AimShadow1, $AimShadow2, $AimShadow3]
+@onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
+@onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
 enum BALL_STATE {AIMABLE, IN_MOTION, RESTING}
 ## STATE DESCRIPTIONS:
 #    AIMABLE:   ball is at rest, and the player is able to control the aim angle before firing. Visual indicator of firing angle is visible.
-#    IN_MOTION: ball has been hit. After some time (say, 5 seconds) of not being in motion, will become RESTING.
+#    IN_MOTION: ball has been hit. After some time (say, 3 seconds) of not being in motion, will become RESTING.
 #    RESTING:   hide ball, show visual indicator of distance to hole, etc. Transition to AIMABLE after player confirmation or after time has passed.
 var state: BALL_STATE = BALL_STATE.AIMABLE
+
+const resting_frames_required: int = 3 * 60
+var resting_frames: int = 0
 
 var launch_strength: float = 5
 
@@ -27,15 +30,68 @@ var ball_yaw_change_cd: int = 0
 var ball_pitch_change_cd: int = 0
 
 func _physics_process(delta: float) -> void:
+	if is_grounded():
+		apply_ground_properties()
+	else:
+		linear_damp = 0
+		angular_damp = 0
 	match state:
 		BALL_STATE.AIMABLE:
 			aiming_controls()
 			draw_aiming()
-			print(ball_yaw, ball_pitch)
 		BALL_STATE.IN_MOTION:
 			hide_aiming()
+			check_resting()
 		BALL_STATE.RESTING:
 			hide_aiming()
+			# temporarily:
+			state = BALL_STATE.AIMABLE
+
+func check_resting():
+	if linear_velocity.length() < 0.1 and angular_velocity.length() < 0.1:
+		resting_frames += 1
+	else:
+		resting_frames = 0
+	
+	if resting_frames >= resting_frames_required:
+		state = BALL_STATE.RESTING
+
+func apply_ground_properties():
+	var ground_type = get_ground_type()
+	if ground_type == "undefined":
+		return
+	else:
+		match ground_type.split("_")[0]:
+			"rough":
+				linear_damp = 2.5
+				angular_damp = 2.0
+			"fairway":
+				linear_damp = 0.5
+				angular_damp = 0.5
+			"green":
+				linear_damp = 0.2
+				angular_damp = 0.2
+			"sand":
+				linear_damp = 10.0
+				angular_damp = 10.0
+				linear_velocity *= 0.9
+			_:
+				pass
+
+func is_grounded():
+	return $RayCast3D.is_colliding()
+
+func get_ground_type():
+	var gridMap: GridMap = $RayCast3D.get_collider()
+	
+	var cell_coords = gridMap.local_to_map(gridMap.to_local(global_position + Vector3(0, -0.135, 0)))
+	
+	if gridMap.get_cell_item(cell_coords) < 1:
+		return "undefined"
+	
+	var tile_name = gridMap.mesh_library.get_item_name(gridMap.get_cell_item(cell_coords))
+	
+	return tile_name
 
 func aiming_controls():
 	if ball_yaw_change_cd < 1:

@@ -1,23 +1,53 @@
 [gd_resource type="MeshLibrary" format=3 uid="uid://dhpmja7p5e7fa"]
 
-[ext_resource type="BoxMesh" uid="uid://c1coayajdpvah" path="res://resources/mesh/test_box.tres" id="1_bbx1n"]
-[ext_resource type="PrismMesh" uid="uid://ynuejkqq0bo3" path="res://resources/mesh/test_ramp.tres" id="2_jbqgw"]
-[ext_resource type="Shape3D" uid="uid://45ehbwupfbu7" path="res://resources/mesh/ramp_shape.tres" id="3_rravu"]
+[ext_resource type="BoxMesh" uid="uid://vv3elcu4nltx" path="res://resources/mesh/rough_box.tres" id="1_jbqgw"]
+[ext_resource type="BoxMesh" uid="uid://dqm3exdcd4dla" path="res://resources/mesh/fairway_box.tres" id="2_rravu"]
+[ext_resource type="BoxMesh" uid="uid://cal68o7key1qo" path="res://resources/mesh/green_box.tres" id="3_1gjbd"]
+[ext_resource type="BoxMesh" uid="uid://ccbga1cuyyy7c" path="res://resources/mesh/sand_box.tres" id="4_rravu"]
+[ext_resource type="ArrayMesh" uid="uid://gpcm7182fwjv" path="res://resources/mesh/green_hole.tres" id="5_1gjbd"]
+[ext_resource type="Shape3D" uid="uid://c77per6fsejmw" path="res://resources/mesh/hole_shape.tres" id="6_dju32"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_e2xr7"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_dju32"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jbqgw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rravu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1gjbd"]
 
 [resource]
-item/0/name = "godot_box"
-item/0/mesh = ExtResource("1_bbx1n")
-item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/mesh_cast_shadow = 1
-item/0/shapes = [SubResource("BoxShape3D_e2xr7"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/0/navigation_layers = 1
-item/1/name = "godot_ramp"
-item/1/mesh = ExtResource("2_jbqgw")
-item/1/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/1/mesh_cast_shadow = 1
-item/1/shapes = [ExtResource("3_rravu"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
-item/1/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-item/1/navigation_layers = 1
+item/2/name = "rough_box"
+item/2/mesh = ExtResource("1_jbqgw")
+item/2/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/mesh_cast_shadow = 1
+item/2/shapes = [SubResource("BoxShape3D_dju32"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/2/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/2/navigation_layers = 1
+item/3/name = "fairway_box"
+item/3/mesh = ExtResource("2_rravu")
+item/3/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/mesh_cast_shadow = 1
+item/3/shapes = [SubResource("BoxShape3D_jbqgw"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/3/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/3/navigation_layers = 1
+item/4/name = "green_box"
+item/4/mesh = ExtResource("3_1gjbd")
+item/4/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/mesh_cast_shadow = 1
+item/4/shapes = [SubResource("BoxShape3D_rravu"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/4/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/4/navigation_layers = 1
+item/5/name = "sand_box"
+item/5/mesh = ExtResource("4_rravu")
+item/5/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/mesh_cast_shadow = 1
+item/5/shapes = [SubResource("BoxShape3D_1gjbd"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/5/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/5/navigation_layers = 1
+item/6/name = "green_hole"
+item/6/mesh = ExtResource("5_1gjbd")
+item/6/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/mesh_cast_shadow = 1
+item/6/shapes = [ExtResource("6_dju32"), Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)]
+item/6/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/6/navigation_layers = 1

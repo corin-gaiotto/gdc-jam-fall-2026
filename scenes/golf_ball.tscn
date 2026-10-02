@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://bjeuxns80ro51"]
 
 [ext_resource type="Script" uid="uid://ch4751228hbmv" path="res://scripts/golf_ball.gd" id="1_8kg14"]
+[ext_resource type="Script" uid="uid://bh1gfumhyjtey" path="res://scripts/ray_cast_3d.gd" id="2_s1xsf"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_furft"]
+bounce = 0.2
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j3k6"]
 radius = 0.125
@@ -36,6 +40,8 @@ bottom_radius = 0.063
 height = 0.01
 
 [node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_furft")
 script = ExtResource("1_8kg14")
 
 [node name="BallCollision" type="CollisionShape3D" parent="." unique_id=1042125360]
@@ -44,20 +50,25 @@ shape = SubResource("SphereShape3D_2j3k6")
 [node name="BallVisualMesh" type="MeshInstance3D" parent="." unique_id=2002016542]
 mesh = SubResource("SphereMesh_2j3k6")
 
-[node name="AimVisual1" type="MeshInstance3D" parent="." unique_id=508170205]
+[node name="RayCast3D" type="RayCast3D" parent="." unique_id=88037520]
+target_position = Vector3(0, -0.13, 0)
+collision_mask = 2
+script = ExtResource("2_s1xsf")
+
+[node name="AimVisual1" type="MeshInstance3D" parent="RayCast3D" unique_id=508170205]
 mesh = SubResource("SphereMesh_3ysr2")
 
-[node name="AimVisual2" type="MeshInstance3D" parent="." unique_id=158530216]
+[node name="AimVisual2" type="MeshInstance3D" parent="RayCast3D" unique_id=158530216]
 mesh = SubResource("SphereMesh_3ysr2")
 
-[node name="AimVisual3" type="MeshInstance3D" parent="." unique_id=1725890081]
+[node name="AimVisual3" type="MeshInstance3D" parent="RayCast3D" unique_id=1725890081]
 mesh = SubResource("SphereMesh_3ysr2")
 
-[node name="AimShadow1" type="MeshInstance3D" parent="." unique_id=2034615914]
+[node name="AimShadow1" type="MeshInstance3D" parent="RayCast3D" unique_id=2034615914]
 mesh = SubResource("CylinderMesh_rbsrl")
 
-[node name="AimShadow2" type="MeshInstance3D" parent="." unique_id=721526692]
+[node name="AimShadow2" type="MeshInstance3D" parent="RayCast3D" unique_id=721526692]
 mesh = SubResource("CylinderMesh_rbsrl")
 
-[node name="AimShadow3" type="MeshInstance3D" parent="." unique_id=412817229]
+[node name="AimShadow3" type="MeshInstance3D" parent="RayCast3D" unique_id=412817229]
 mesh = SubResource("CylinderMesh_rbsrl")
