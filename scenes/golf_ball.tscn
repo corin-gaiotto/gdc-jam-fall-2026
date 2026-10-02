@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://bjeuxns80ro51"]
 
+[ext_resource type="Script" uid="uid://ch4751228hbmv" path="res://scripts/golf_ball.gd" id="1_8kg14"]
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j3k6"]
 radius = 0.125
 
@@ -10,10 +12,52 @@ material = SubResource("StandardMaterial3D_3ysr2")
 radius = 0.125
 height = 0.25
 
-[node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1d0b"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(1, 0, 0, 0.49803922)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1042125360]
+[sub_resource type="SphereMesh" id="SphereMesh_3ysr2"]
+material = SubResource("StandardMaterial3D_i1d0b")
+radius = 0.063
+height = 0.125
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_luvbl"]
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 0, 0.60784316, 0.49803922)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_rbsrl"]
+material = SubResource("StandardMaterial3D_luvbl")
+top_radius = 0.063
+bottom_radius = 0.063
+height = 0.01
+
+[node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
+script = ExtResource("1_8kg14")
+
+[node name="BallCollision" type="CollisionShape3D" parent="." unique_id=1042125360]
 shape = SubResource("SphereShape3D_2j3k6")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2002016542]
+[node name="BallVisualMesh" type="MeshInstance3D" parent="." unique_id=2002016542]
 mesh = SubResource("SphereMesh_2j3k6")
+
+[node name="AimVisual1" type="MeshInstance3D" parent="." unique_id=508170205]
+mesh = SubResource("SphereMesh_3ysr2")
+
+[node name="AimVisual2" type="MeshInstance3D" parent="." unique_id=158530216]
+mesh = SubResource("SphereMesh_3ysr2")
+
+[node name="AimVisual3" type="MeshInstance3D" parent="." unique_id=1725890081]
+mesh = SubResource("SphereMesh_3ysr2")
+
+[node name="AimShadow1" type="MeshInstance3D" parent="." unique_id=2034615914]
+mesh = SubResource("CylinderMesh_rbsrl")
+
+[node name="AimShadow2" type="MeshInstance3D" parent="." unique_id=721526692]
+mesh = SubResource("CylinderMesh_rbsrl")
+
+[node name="AimShadow3" type="MeshInstance3D" parent="." unique_id=412817229]
+mesh = SubResource("CylinderMesh_rbsrl")
