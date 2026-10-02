@@ -1,0 +1,10 @@
+[gd_resource type="PlaneMesh" format=3 uid="uid://biilvdc5ktf2k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7dahq"]
+transparency = 1
+albedo_color = Color(0, 0.5019608, 1, 0.5176471)
+
+[resource]
+material = SubResource("StandardMaterial3D_7dahq")
+size = Vector2(1, 1)
+center_offset = Vector3(0, 0.4, 0)

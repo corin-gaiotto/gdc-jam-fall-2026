@@ -3,15 +3,22 @@ extends RigidBody3D
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
-enum BALL_STATE {AIMABLE, IN_MOTION, RESTING}
+enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD}
 ## STATE DESCRIPTIONS:
 #    AIMABLE:   ball is at rest, and the player is able to control the aim angle before firing. Visual indicator of firing angle is visible.
 #    IN_MOTION: ball has been hit. After some time (say, 3 seconds) of not being in motion, will become RESTING.
 #    RESTING:   hide ball, show visual indicator of distance to hole, etc. Transition to AIMABLE after player confirmation or after time has passed.
+#    HAZARD:    hide ball, after short amount of time teleport ball back to old position and show ball, transitioning to RESTING.
 var state: BALL_STATE = BALL_STATE.AIMABLE
+
+var stroke_count: int = 0
+@onready var previous_position: Vector3 = global_position
 
 const resting_frames_required: int = 3 * 60
 var resting_frames: int = 0
+
+const hazard_frames_required: int = 3 * 60
+var hazard_frames: int = 0
 
 var launch_strength: float = 5
 
@@ -44,8 +51,27 @@ func _physics_process(delta: float) -> void:
 			check_resting()
 		BALL_STATE.RESTING:
 			hide_aiming()
+			previous_position = global_position
 			# temporarily:
 			state = BALL_STATE.AIMABLE
+		BALL_STATE.HAZARD:
+			linear_velocity = Vector3.ZERO
+			angular_velocity = Vector3.ZERO
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, true)
+			hide_aiming()
+			if hazard_frames >= hazard_frames_required:
+				hazard_frames = 0
+				global_position = previous_position
+				self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, false)
+				self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, false)
+				self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, false)
+				linear_velocity = Vector3.ZERO
+				angular_velocity = Vector3.ZERO
+				show()
+				state = BALL_STATE.RESTING
+			hazard_frames += 1
 
 func check_resting():
 	if linear_velocity.length() < 0.1 and angular_velocity.length() < 0.1:
@@ -75,6 +101,11 @@ func apply_ground_properties():
 				linear_damp = 10.0
 				angular_damp = 10.0
 				linear_velocity *= 0.9
+			"water":
+				if state != BALL_STATE.HAZARD:
+					hazard_frames = 0
+					state = BALL_STATE.HAZARD
+					hide()
 			_:
 				pass
 
@@ -113,6 +144,7 @@ func aiming_controls():
 			sin(ball_pitch) * launch_strength,
 			sin(ball_yaw) * cos(ball_pitch) * launch_strength
 			))
+		stroke_count += 1
 		state = BALL_STATE.IN_MOTION
 
 func hide_aiming():
