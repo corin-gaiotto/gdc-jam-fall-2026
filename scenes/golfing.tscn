@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c4a0v5yh4eib4" path="res://scripts/camera_3d.gd" id="1_furft"]
 [ext_resource type="MeshLibrary" uid="uid://dhpmja7p5e7fa" path="res://resources/mesh/default_mesh_library.tres" id="1_wi6v5"]
 [ext_resource type="PackedScene" uid="uid://bjeuxns80ro51" path="res://scenes/golf_ball.tscn" id="2_xbj8l"]
+[ext_resource type="PackedScene" uid="uid://c28ksxkp4mhey" path="res://scenes/wind_controller.tscn" id="4_rbsrl"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
 background_mode = 2
@@ -35,5 +36,9 @@ metadata/_editor_floor_ = Vector3(0, -3, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=171808503]
 environment = SubResource("Environment_2j3k6")
 
-[node name="GolfBall" parent="." unique_id=1367131474 instance=ExtResource("2_xbj8l")]
+[node name="GolfBall" parent="." unique_id=1367131474 node_paths=PackedStringArray("wind_controller") instance=ExtResource("2_xbj8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19504404, 0.2256209, 0.5544168)
+wind_controller = NodePath("../WindController")
+
+[node name="WindController" parent="." unique_id=1318375014 instance=ExtResource("4_rbsrl")]
+transform = Transform3D(1, -2.9802322e-08, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 5.9604645e-08, 0, 5.9604645e-08)

@@ -4,10 +4,11 @@
 [ext_resource type="Script" uid="uid://bh1gfumhyjtey" path="res://scripts/ray_cast_3d.gd" id="2_s1xsf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_furft"]
-bounce = 0.2
+friction = 0.0
+bounce = 0.15
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j3k6"]
-radius = 0.125
+radius = 0.12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ysr2"]
 
@@ -42,6 +43,7 @@ height = 0.01
 [node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_furft")
+continuous_cd = true
 script = ExtResource("1_8kg14")
 
 [node name="BallCollision" type="CollisionShape3D" parent="." unique_id=1042125360]

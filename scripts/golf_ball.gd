@@ -3,6 +3,8 @@ extends RigidBody3D
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
+@export var wind_controller: WindController
+
 enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD}
 ## STATE DESCRIPTIONS:
 #    AIMABLE:   ball is at rest, and the player is able to control the aim angle before firing. Visual indicator of firing angle is visible.
@@ -38,10 +40,24 @@ var ball_pitch_change_cd: int = 0
 
 func _physics_process(delta: float) -> void:
 	if is_grounded():
+		var hit_point = $RayCast3D.get_collision_point()
+		var current_distance = global_position.distance_to(hit_point)
+		
+		# Calculate spring compression force
+		var distance_error = 0.13 - current_distance
+		if distance_error > 0:
+			var normal = $RayCast3D.get_collision_normal()
+			var vertical_velocity = linear_velocity.dot(normal)
+			
+			var spring_force = (distance_error * 500) - (vertical_velocity * 30)
+			apply_force(normal * max(0.0, spring_force))
 		apply_ground_properties()
 	else:
 		linear_damp = 0
 		angular_damp = 0
+		
+		# wind
+		apply_central_force(Vector3(cos(wind_controller.wind_direction), 0, sin(wind_controller.wind_direction)) * wind_controller.wind_strength * delta)
 	match state:
 		BALL_STATE.AIMABLE:
 			aiming_controls()
@@ -74,7 +90,7 @@ func _physics_process(delta: float) -> void:
 			hazard_frames += 1
 
 func check_resting():
-	if linear_velocity.length() < 0.1 and angular_velocity.length() < 0.1:
+	if linear_velocity.length() < 0.2 and angular_velocity.length() < 0.2:
 		resting_frames += 1
 	else:
 		resting_frames = 0
@@ -117,7 +133,7 @@ func get_ground_type():
 	
 	var cell_coords = gridMap.local_to_map(gridMap.to_local(global_position + Vector3(0, -0.135, 0)))
 	
-	if gridMap.get_cell_item(cell_coords) < 1:
+	if gridMap.get_cell_item(cell_coords) < 2:
 		return "undefined"
 	
 	var tile_name = gridMap.mesh_library.get_item_name(gridMap.get_cell_item(cell_coords))
