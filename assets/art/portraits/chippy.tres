@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PortraitData" format=3 uid="uid://ch581w5mhkvyr"]
+
+[ext_resource type="Texture2D" uid="uid://1n51ujv0jxfo" path="res://assets/art/portraits/chippy_default.png" id="1_6ouyq"]
+[ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="1_hrs3e"]
+[ext_resource type="Texture2D" uid="uid://dak57g2lrdc23" path="res://assets/art/portraits/chippy_default_talk.png" id="2_uwga0"]
+[ext_resource type="Texture2D" uid="uid://dg64viv2rokwv" path="res://assets/art/portraits/chippy_happy.png" id="3_lcvx8"]
+[ext_resource type="Texture2D" uid="uid://bmkiyoe7gropa" path="res://assets/art/portraits/chippy_startled.png" id="4_dccu7"]
+
+[resource]
+script = ExtResource("1_hrs3e")
+data = Dictionary[String, Texture2D]({
+"default": ExtResource("1_6ouyq"),
+"default_talk": ExtResource("2_uwga0"),
+"happy": ExtResource("3_lcvx8"),
+"startled": ExtResource("4_dccu7")
+})
+metadata/_custom_type_script = "uid://dc3f8sjccrqkd"

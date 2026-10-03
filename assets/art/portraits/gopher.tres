@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PortraitData" format=3 uid="uid://bxyfafc0barj4"]
+
+[ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="1_4tgcn"]
+[ext_resource type="Texture2D" uid="uid://bj0ei6s0ie36t" path="res://assets/art/portraits/gopher_beetroot.png" id="1_lqfog"]
+[ext_resource type="Texture2D" uid="uid://dte11bo8beuc8" path="res://assets/art/portraits/gopher_default.png" id="2_f044p"]
+[ext_resource type="Texture2D" uid="uid://dbsuos6qrr8o8" path="res://assets/art/portraits/gopher_default_club.png" id="3_vbbul"]
+[ext_resource type="Texture2D" uid="uid://3btav03ajfy6" path="res://assets/art/portraits/gopher_default_talk.png" id="4_2i07g"]
+[ext_resource type="Texture2D" uid="uid://oo38vddp3tar" path="res://assets/art/portraits/gopher_embarrass.png" id="5_g0u56"]
+[ext_resource type="Texture2D" uid="uid://d08svxyvt3b8" path="res://assets/art/portraits/gopher_rizz.png" id="6_yxfi4"]
+[ext_resource type="Texture2D" uid="uid://bt80g0e7joo8l" path="res://assets/art/portraits/gopher_sus.png" id="7_mivoc"]
+[ext_resource type="Texture2D" uid="uid://crqtcqjajtwwx" path="res://assets/art/portraits/gopher_swing.png" id="8_fw4is"]
+
+[resource]
+script = ExtResource("1_4tgcn")
+data = Dictionary[String, Texture2D]({
+"beetroot": ExtResource("1_lqfog"),
+"default": ExtResource("2_f044p"),
+"default_club": ExtResource("3_vbbul"),
+"default_talk": ExtResource("4_2i07g"),
+"embarrass": ExtResource("5_g0u56"),
+"rizz": ExtResource("6_yxfi4"),
+"sus": ExtResource("7_mivoc"),
+"swing": ExtResource("8_fw4is")
+})
+metadata/_custom_type_script = "uid://dc3f8sjccrqkd"

@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://d3j7uuxtbf4on"]
 
+[ext_resource type="Script" uid="uid://dhdckbb4ehck7" path="res://scripts/dialogue_portrait.gd" id="1_mbai0"]
 [ext_resource type="Texture2D" uid="uid://dte11bo8beuc8" path="res://assets/art/portraits/gopher_default.png" id="1_mre4j"]
+[ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="2_pbb6w"]
+[ext_resource type="Resource" uid="uid://bxyfafc0barj4" path="res://assets/art/portraits/gopher.tres" id="3_phas5"]
+[ext_resource type="Resource" uid="uid://ch581w5mhkvyr" path="res://assets/art/portraits/chippy.tres" id="4_phas5"]
 
 [node name="DialoguePortrait" type="Control" unique_id=1415108031]
 layout_mode = 3
@@ -9,6 +13,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_mbai0")
+portrait_data = Dictionary[String, ExtResource("2_pbb6w")]({
+"chippy": ExtResource("4_phas5"),
+"gopher": ExtResource("3_phas5")
+})
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1447689139]
 z_index = 1

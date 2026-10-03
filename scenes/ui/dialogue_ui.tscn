@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bilvsbbgmcuei"]
 
 [ext_resource type="PackedScene" uid="uid://d3j7uuxtbf4on" path="res://scenes/ui/dialogue_portrait.tscn" id="1_sd0pw"]
+[ext_resource type="Script" uid="uid://dqmqq006dt05e" path="res://scripts/dialogue_ui.gd" id="1_ysedr"]
 [ext_resource type="PackedScene" uid="uid://dl3ikunk3mgt7" path="res://scenes/ui/dialogue_box.tscn" id="2_ysedr"]
 
 [node name="DialogueUI" type="ColorRect" unique_id=92798159]
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.3137255)
+script = ExtResource("1_ysedr")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1449671748]
 layout_mode = 1
@@ -29,7 +31,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 120)
 layout_mode = 2
 
-[node name="DialoguePortrait" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1415108031 instance=ExtResource("1_sd0pw")]
+[node name="PlayerPortrait" parent="VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1415108031 instance=ExtResource("1_sd0pw")]
 custom_minimum_size = Vector2(480, 480)
 layout_mode = 2
 
@@ -47,7 +49,7 @@ layout_mode = 2
 [node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/HBoxContainer" unique_id=929226891]
 layout_mode = 2
 
-[node name="DialoguePortrait" parent="VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=62838376 instance=ExtResource("1_sd0pw")]
+[node name="OpponentPortrait" parent="VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=62838376 instance=ExtResource("1_sd0pw")]
 custom_minimum_size = Vector2(480, 480)
 layout_mode = 2
 
@@ -58,14 +60,14 @@ layout_mode = 2
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=255752501]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=635322184]
+[node name="Option1" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=635322184]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Button2" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1853770600]
+[node name="Option2" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1853770600]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="Button3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=338036575]
+[node name="Option3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=338036575]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
