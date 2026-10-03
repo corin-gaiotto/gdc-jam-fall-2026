@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://d3j7uuxtbf4on"]
+
+[ext_resource type="Texture2D" uid="uid://dte11bo8beuc8" path="res://assets/art/portraits/gopher_default.png" id="1_mre4j"]
+
+[node name="DialoguePortrait" type="Control" unique_id=1415108031]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1447689139]
+z_index = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_mre4j")
+expand_mode = 5
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=321209329]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2159017, 0.21590173, 0.2159017, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=1606525934]
+z_index = 2
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 64
+text = "[INSERT NAME HERE]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 2
