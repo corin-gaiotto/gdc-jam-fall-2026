@@ -69,6 +69,7 @@ func _physics_process(delta: float) -> void:
 			hide_aiming()
 			previous_position = global_position
 			# temporarily:
+			wind_controller.randomize_wind()
 			state = BALL_STATE.AIMABLE
 		BALL_STATE.HAZARD:
 			linear_velocity = Vector3.ZERO

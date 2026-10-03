@@ -2,5 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cvy58nrhs24g5" path="res://scripts/wind_controller.gd" id="1_sgadd"]
 
+[sub_resource type="Curve" id="Curve_s1xsf"]
+_limits = [0.0, 300.0, 0.0, 1.0]
+_data = [Vector2(0, 0), 0.0, 316.85385, 0, 0, Vector2(0.84, 104.494354), 0.0, 0.0, 0, 0, Vector2(1, 300), 707.8652, 0.0, 0, 0]
+point_count = 3
+
 [node name="WindController" type="Node3D" unique_id=1318375014]
 script = ExtResource("1_sgadd")
+wind_strength_curve = SubResource("Curve_s1xsf")
