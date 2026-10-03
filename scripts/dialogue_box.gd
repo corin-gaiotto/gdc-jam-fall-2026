@@ -40,6 +40,9 @@ func _physics_process(delta: float) -> void:
 		text_done.emit()
 		if Input.is_action_just_pressed("dialogue_confirm"):
 			confirm_pressed.emit()
+	else:
+		if Input.is_action_just_pressed("dialogue_confirm"):
+			content_label.visible_characters = len(content_label.text)
 	
 	while text_amount >= text_speed:
 		text_amount -= text_speed

@@ -13,14 +13,15 @@ class_name DialogueHandler
 	$VBoxContainer/VBoxContainer/Option3
 ]
 
+var golf_game_manager: GolfGameManager
+
 var timing: bool = false
 var timing_result: int = -1 # -1 for timeout, 0, 1, 2 for the options
 var option_timer_max: int = 600 # in frames
 var option_timer: int = 0 # when it reaches 0, automatically end dialogue and gain embarrassment
 
 func _ready() -> void:
-	var chippy_data = read_dialogue_file("res://assets/dialogue/chippy.json")
-	play_dialogue(chippy_data["cheat_noticed"][0], "chippy")
+	pass
 
 func read_dialogue_file(filename):
 	# reads the JSON file into a GDScript object
@@ -31,7 +32,11 @@ func read_dialogue_file(filename):
 
 func play_dialogue(data: Array[Variant], opponent_name: String):
 	# plays the Dialogue Object
+	print(data)
 	var command_index = 0
+	timing = false
+	timing_result = -1
+	option_timer = 0
 	while command_index < len(data):
 		var result = await run_command(data[command_index], opponent_name)
 		if result == -1:
@@ -89,10 +94,29 @@ func run_command(command: Dictionary, opponent_name: String):
 			
 			if result == -1:
 				# add embarrassment and end
+				golf_game_manager.embarrassment += 2
 				return -1
 			else:
-				# TODO: roll for success or failure instead of picking success arbitrarily
-				await play_dialogue(command["options"][result]["result_success"], opponent_name)
+				# roll for success or failure
+				var chance = 0.0
+				match command["options"][result]["stat"]:
+					"greed":
+						chance = golf_game_manager.opponents[golf_game_manager.opponent_index]["stats"]["greed"]/3.0
+					"emotional_stability":
+						chance = 1 - golf_game_manager.opponents[golf_game_manager.opponent_index]["stats"]["emotional_stability"]/3.0
+					"gullibility":
+						chance = golf_game_manager.opponents[golf_game_manager.opponent_index]["stats"]["gullibility"]/3.0
+				if randf() < chance:
+					## increase/decrease relevant stats on success
+					golf_game_manager.embarrassment += command["options"][result]["embarrassment_change"]
+					golf_game_manager.suspicion += command["options"][result]["suspicion_change"]
+					
+					golf_game_manager.embarrassment = clamp(golf_game_manager.embarrassment, 0, golf_game_manager.max_embarrassment)
+					golf_game_manager.suspicion = clamp(golf_game_manager.suspicion, 0, golf_game_manager.max_suspicion)
+					
+					await play_dialogue(command["options"][result]["result_success"], opponent_name)
+				else:
+					await play_dialogue(command["options"][result]["result_failure"], opponent_name)
 		_:
 			pass
 	return 0

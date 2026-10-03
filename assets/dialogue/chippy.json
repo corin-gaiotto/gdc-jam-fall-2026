@@ -1,12 +1,12 @@
 {
 	"intro":[
+		{"type":"player_portrait", "expression":"default"},
 		{
 			"type":"narrator",
 			"text":[
 				"You came across a new face on the field, awkwardly waving the club, perfectly shaving chunks off the grass while leaving the ball untouched."
 			]
 		},
-		{"type":"player_portrait", "expression":"default"},
 		{"type":"opponent_portrait", "expression":"default"},
 		{
 			"type":"narrator",
@@ -34,6 +34,8 @@
 					{
 						"text":"You mean like how this beetroot moved itself to your hands?",
 						"stat":"greed",
+						"embarrassment_change":-2,
+						"suspicion_change":0,
 						"result_success":[
 							{"type":"player_portrait", "expression":"beetroot"},
 							{"type":"opponent_portrait", "expression":"happy"},
@@ -58,6 +60,8 @@
 					{
 						"text":"Feel free to move your eyes away from that before this club makes contact with your cheeks.",
 						"stat":"emotional_stability",
+						"embarrassment_change":-2,
+						"suspicion_change":1,
 						"result_success":[
 							{"type":"player_portrait", "expression":"default_club"},
 							{"type":"opponent_portrait", "expression":"startled"},
@@ -72,6 +76,8 @@
 					{
 						"text":"Must have been the breeze; speaking of, your stance just now just BLEW me away",
 						"stat":"gullibility",
+						"embarrassment_change":1,
+						"suspicion_change":-2,
 						"result_success":[
 							{"type":"player_portrait", "expression":"rizz"},
 							{"type":"opponent_portrait", "expression":"happy"},

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dukfjrg7t7ofw" path="res://scenes/golfMaps/test_golf_map.tscn" id="2_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://bjeuxns80ro51" path="res://scenes/golf_ball.tscn" id="2_xbj8l"]
 [ext_resource type="PackedScene" uid="uid://c28ksxkp4mhey" path="res://scenes/wind_controller.tscn" id="4_rbsrl"]
+[ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
 background_mode = 2
@@ -36,3 +37,5 @@ gridmap = NodePath("../GridMap")
 
 [node name="WindController" parent="." unique_id=1318375014 instance=ExtResource("4_rbsrl")]
 transform = Transform3D(1, -2.9802322e-08, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 5.9604645e-08, 0, 5.9604645e-08)
+
+[node name="DialogueUI" parent="." unique_id=92798159 instance=ExtResource("6_h8u8v")]

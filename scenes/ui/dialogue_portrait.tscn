@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://d3j7uuxtbf4on"]
 
 [ext_resource type="Script" uid="uid://dhdckbb4ehck7" path="res://scripts/dialogue_portrait.gd" id="1_mbai0"]
-[ext_resource type="Texture2D" uid="uid://dte11bo8beuc8" path="res://assets/art/portraits/gopher_default.png" id="1_mre4j"]
 [ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="2_pbb6w"]
 [ext_resource type="Resource" uid="uid://bxyfafc0barj4" path="res://assets/art/portraits/gopher.tres" id="3_phas5"]
 [ext_resource type="Resource" uid="uid://ch581w5mhkvyr" path="res://assets/art/portraits/chippy.tres" id="4_phas5"]
@@ -27,7 +26,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_mre4j")
 expand_mode = 5
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=321209329]
@@ -49,7 +47,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_font_sizes/normal_font_size = 64
-text = "[INSERT NAME HERE]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 2

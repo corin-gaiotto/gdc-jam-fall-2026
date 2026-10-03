@@ -24,6 +24,8 @@ Dialogue Object:
 				"options": Array, elements have:
 					"text": ...
 					"stat": one of "greed", "emotional_stability", "gullibility"; affects how likely the option is to succeed as well as what the option does.
+					"embarrassment_change": int
+					"suspicion_change": int
 					"result_success": Dialogue Object
 					"result_failure": Dialogue Object
 

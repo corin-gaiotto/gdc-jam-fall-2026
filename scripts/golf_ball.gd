@@ -4,19 +4,22 @@ class_name GolfBall
 
 var camera_rotation: Vector3 = Vector3(deg_to_rad(-30), deg_to_rad(45), 0)
 
+signal check_if_caught
+
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
 @export var wind_controller: WindController
 @export var gridmap: GolfMap
 
-enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD}
+enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD, DIALOGUE}
 enum CHEATS {NONE, WIND, BALL, MOLE, TILT}
 ## STATE DESCRIPTIONS:
 #    AIMABLE:   ball is at rest, and the player is able to control the aim angle before firing. Visual indicator of firing angle is visible.
 #    IN_MOTION: ball has been hit. After some time (say, 3 seconds) of not being in motion, will become RESTING.
 #    RESTING:   hide ball, show visual indicator of distance to hole, etc. Transition to AIMABLE after player confirmation or after time has passed.
 #    HAZARD:    hide ball, after short amount of time teleport ball back to old position and show ball, transitioning to RESTING.
+#    DIALOGUE:  hide ball; player is in dialogue menu, so freeze ball and don't let it be controlled.
 var state: BALL_STATE = BALL_STATE.AIMABLE
 
 var selected_cheat: CHEATS = CHEATS.NONE
@@ -161,7 +164,9 @@ func _physics_process(delta: float) -> void:
 			gridmap.rotation = Vector3(0, 0, 0)
 			gravity_scale = 1.0
 			
-			## LATER: run the roll for if you're caught cheating here
+			## run the roll for if you're caught cheating here
+			if cheated:
+				check_if_caught.emit()
 			
 			cheated = false
 		BALL_STATE.HAZARD:
@@ -183,6 +188,15 @@ func _physics_process(delta: float) -> void:
 				show()
 				state = BALL_STATE.RESTING
 			hazard_frames += 1
+		BALL_STATE.DIALOGUE:
+			hide()
+			$CanvasLayer/CheatMenu.hide()
+			linear_velocity = Vector3.ZERO
+			angular_velocity = Vector3.ZERO
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, true)
+			hide_aiming()
 
 func check_resting():
 	if linear_velocity.length() < 0.2 and angular_velocity.length() < 0.2:
