@@ -12,7 +12,7 @@ signal confirm_pressed
 var text_speed: float = 2.5 # frames per text
 var text_amount: float = 0
 
-func play_paragraphs(speaker: String, text: Array):
+func play_paragraphs(speaker: String, text: Array, auto_advance: bool):
 	if speaker == "narrator":
 		speaker_panel.hide()
 		speaker_label.hide()
@@ -23,7 +23,10 @@ func play_paragraphs(speaker: String, text: Array):
 	var index = 0
 	while index < len(text):
 		play_text(text[index])
-		await confirm_pressed
+		if not(auto_advance):
+			await confirm_pressed
+		else:
+			await text_done
 		index += 1
 
 func play_text(text: String):

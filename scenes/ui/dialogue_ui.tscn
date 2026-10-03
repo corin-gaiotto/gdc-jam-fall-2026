@@ -71,3 +71,7 @@ layout_mode = 2
 [node name="Option3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=338036575]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Option2" to="." method="_on_option_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer/Option3" to="." method="_on_option_3_pressed"]

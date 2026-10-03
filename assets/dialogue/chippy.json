@@ -23,7 +23,8 @@
 				"type":"opponent",
 				"text":[
 					"Did that ball just move on its own?"
-				]
+				],
+				"auto_advance":true
 			},
 			{"type":"player_portrait", "expression":"default"},
 			{"type":"opponent_portrait", "expression":"default"},
@@ -77,7 +78,7 @@
 							{
 								"type":"opponent",
 								"text":[
-									"Oh, I- no, I mean- ... carry on."
+									"You really think so? Gee, thanks!"
 								]
 							}
 						]
