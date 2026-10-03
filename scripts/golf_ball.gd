@@ -22,8 +22,6 @@ var resting_frames: int = 0
 const hazard_frames_required: int = 3 * 60
 var hazard_frames: int = 0
 
-var launch_strength: float = 5
-
 # aiming direction
 var ball_yaw: float = 0.0
 var ball_pitch: float = PI/4
@@ -37,6 +35,12 @@ const ball_change_step: float = PI/72
 const ball_change_max_cd: int = 6 # number of frames before another movement is registered
 var ball_yaw_change_cd: int = 0
 var ball_pitch_change_cd: int = 0
+
+const launch_percent_change: float = 1.0/48.0 # amount the bar changes per physics tick
+var launching: bool = false
+var launch_percent_direction: float = 1 # whether bar is moving up or down (1 or -1)
+var launch_percent: float = 0
+var launch_strength: float = 10 # strength of the strongest shot
 
 func _physics_process(delta: float) -> void:
 	if is_grounded():
@@ -60,7 +64,15 @@ func _physics_process(delta: float) -> void:
 		apply_central_force(Vector3(cos(wind_controller.wind_direction), 0, sin(wind_controller.wind_direction)) * wind_controller.wind_strength * delta)
 	match state:
 		BALL_STATE.AIMABLE:
-			aiming_controls()
+			linear_velocity = Vector3.ZERO
+			angular_velocity = Vector3.ZERO
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, true)
+			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, true)
+			if launching:
+				launching_controls()
+			else:
+				aiming_controls()
 			draw_aiming()
 		BALL_STATE.IN_MOTION:
 			hide_aiming()
@@ -156,13 +168,29 @@ func aiming_controls():
 	ball_pitch_change_cd -= 1
 	
 	if Input.is_action_just_pressed("ball_launch"):
+		launching = true
+		launch_percent = 0
+		launch_percent_direction = 1
+
+func launching_controls():
+	if Input.is_action_just_pressed("ball_launch"):
+		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, false)
+		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, false)
+		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, false)
 		apply_central_impulse(Vector3(
-			cos(ball_yaw) * cos(ball_pitch) * launch_strength,
-			sin(ball_pitch) * launch_strength,
-			sin(ball_yaw) * cos(ball_pitch) * launch_strength
+			cos(ball_yaw) * cos(ball_pitch) * launch_strength * launch_percent,
+			sin(ball_pitch) * launch_strength * launch_percent,
+			sin(ball_yaw) * cos(ball_pitch) * launch_strength * launch_percent
 			))
 		stroke_count += 1
 		state = BALL_STATE.IN_MOTION
+		resting_frames = 0
+		launching = false
+	
+	launch_percent += launch_percent_change * launch_percent_direction
+	
+	if launch_percent >= 1 or launch_percent <= 0:
+		launch_percent_direction *= -1
 
 func hide_aiming():
 	for vis in aim_visuals:

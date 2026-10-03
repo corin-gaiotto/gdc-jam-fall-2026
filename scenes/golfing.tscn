@@ -10,12 +10,12 @@ background_mode = 2
 background_color = Color(0.49632627, 0.6586701, 1, 0.22352941)
 ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
-ambient_light_energy = 0.3
+ambient_light_energy = 0.1
 
 [node name="Golfing" type="Node3D" unique_id=2049913240]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=448123260]
-transform = Transform3D(0.0540789, -0.86475813, 0.4992683, 0, 0.49999997, 0.86602545, -0.99853665, -0.0468337, 0.027039448, 0.03189373, 1.0257893, 0)
+transform = Transform3D(0.8660253, -0.48296288, 0.12940954, 0, 0.25881904, 0.9659258, -0.49999997, -0.8365162, 0.22414389, 0.03189373, 1.0257893, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1731411613 node_paths=PackedStringArray("tracking_ball")]
 transform = Transform3D(0.7071067, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.7071067, -0.35355338, 0.6123724, 1, 2, 1)
