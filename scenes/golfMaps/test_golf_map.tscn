@@ -12,3 +12,5 @@ data = {
 }
 script = ExtResource("2_jqfuh")
 metadata/_editor_floor_ = Vector3(0, -1, 0)
+
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=1078827441]
