@@ -1,0 +1,28 @@
+Dict with:
+	"intro": Dialogue Object
+	"cheat_noticed": Array of Dialogue Objects
+
+Dialogue Object:
+	Array of dialogue commands:
+		Match Type: 
+			"narrator": dialogue box with no label
+				"dialogue": Dialogue Box
+			"player": dialogue box labelled "You" (or Gopher?)
+				"dialogue": Dialogue Box
+			"opponent": dialogue box labelled with the opponent's name
+				"dialogue": Dialogue Box
+			"player_portrait": changes player's portrait to gopher_<expression>
+				"expression": portrait name
+			"opponent_portrait": changes player's portrait to <opponent_name>_<name>
+				"expression": portrait name
+			"sound_effect": plays sound effect
+				"effect": sound effect name
+			"timed_options": brings up a set of Dialogue Options (keeping the previous dialogue on screen)
+				"options": Array, elements have:
+					"text": ...
+					"stat": one of "greed", "emotional_stability", "gullibility"; affects how likely the option is to succeed as well as what the option does.
+					"result_success": Dialogue Object
+					"result_failure": Dialogue Object
+
+Dialogue Box:
+	Array of paragraphs that will be separated by pressing confirm (space, enter, click, etc)

@@ -1,0 +1,89 @@
+{
+	"intro":[
+		{
+			"type":"narrator",
+			"text":[
+				"You came across a new face on the field, awkwardly waving the club, perfectly shaving chunks off the grass while leaving the ball untouched."
+			]
+		},
+		{"type":"player_portrait", "expression":"default"},
+		{"type":"opponent_portrait", "expression":"default"},
+		{
+			"type":"narrator",
+			"text":[
+				"\"This will be good practice\", you thought while waving the poor chipmunk down: \"Need some tips?\""
+			]
+		},
+	],
+	"cheat_noticed":[
+		[
+			{"type":"player_portrait", "expression":"default"},
+			{"type":"opponent_portrait", "expression":"default_talk"},
+			{
+				"type":"opponent",
+				"text":[
+					"Did that ball just move on its own?"
+				]
+			},
+			{"type":"player_portrait", "expression":"default"},
+			{"type":"opponent_portrait", "expression":"default"},
+			{
+				"type":"timed_options",
+				"options":[
+					{
+						"text":"You mean like how this beetroot moved itself to your hands?",
+						"stat":"greed",
+						"result_success":[
+							{"type":"player_portrait", "expression":"beetroot"},
+							{"type":"opponent_portrait", "expression":"happy"},
+							{
+								"type":"opponent",
+								"text":[
+									"Wow, thanks! Uh, what was I talking about again?"
+								]
+							}
+						],
+						"result_failure":[
+							{"type":"player_portrait", "expression":"beetroot"},
+							{"type":"opponent_portrait", "expression":"startled"},
+							{
+								"type":"opponent",
+								"text":[
+									"H-hey! How greedy do you think I am?!"
+								]
+							}
+						]
+					},
+					{
+						"text":"Feel free to move your eyes away from that before this club makes contact with your cheeks.",
+						"stat":"emotional_stability",
+						"result_success":[
+							{"type":"player_portrait", "expression":"default_club"},
+							{"type":"opponent_portrait", "expression":"startled"},
+							{
+								"type":"opponent",
+								"text":[
+									"Oh, I- no, I mean- ... carry on."
+								]
+							}
+						]
+					},
+					{
+						"text":"Must have been the breeze; speaking of, your stance just now just BLEW me away",
+						"stat":"gullibility",
+						"result_success":[
+							{"type":"player_portrait", "expression":"rizz"},
+							{"type":"opponent_portrait", "expression":"happy"},
+							{
+								"type":"opponent",
+								"text":[
+									"Oh, I- no, I mean- ... carry on."
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	]
+}
