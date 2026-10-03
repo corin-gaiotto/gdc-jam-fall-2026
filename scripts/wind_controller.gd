@@ -11,5 +11,3 @@ var wind_strength: float = 200
 func randomize_wind():
 	wind_direction = randf_range(0, 2 * PI)
 	wind_strength = wind_strength_curve.sample(randf_range(0, 1))
-
-## when implementing wind change cheat, want to calculate suspicion increase based on how much the wind is changing

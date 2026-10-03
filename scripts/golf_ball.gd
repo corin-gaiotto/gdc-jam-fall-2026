@@ -2,18 +2,25 @@ extends RigidBody3D
 
 class_name GolfBall
 
+var camera_rotation: Vector3 = Vector3(deg_to_rad(-30), deg_to_rad(45), 0)
+
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
 @export var wind_controller: WindController
 
 enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD}
+enum CHEATS {NONE, WIND, BALL, MOLE, TILT}
 ## STATE DESCRIPTIONS:
 #    AIMABLE:   ball is at rest, and the player is able to control the aim angle before firing. Visual indicator of firing angle is visible.
 #    IN_MOTION: ball has been hit. After some time (say, 3 seconds) of not being in motion, will become RESTING.
 #    RESTING:   hide ball, show visual indicator of distance to hole, etc. Transition to AIMABLE after player confirmation or after time has passed.
 #    HAZARD:    hide ball, after short amount of time teleport ball back to old position and show ball, transitioning to RESTING.
 var state: BALL_STATE = BALL_STATE.AIMABLE
+
+var selected_cheat: CHEATS = CHEATS.NONE
+var mouse_direction: float = 0 # used for wind and tilt cheats
+var mouse_strength: float = 0 # used for wind and tilt cheats
 
 var stroke_count: int = 0
 @onready var previous_position: Vector3 = global_position
@@ -44,6 +51,13 @@ var launch_percent_direction: float = 1 # whether bar is moving up or down (1 or
 var launch_percent: float = 0
 var launch_strength: float = 10 # strength of the strongest shot
 
+func get_mouse_properties():
+	var rawPosition = get_viewport().get_mouse_position() - Vector2(1920/2, 1080/2)
+	var correctedPosition = Vector3(rawPosition.x, rawPosition.y, 0) * Basis.from_euler(camera_rotation)
+	mouse_direction = atan2(correctedPosition.y, correctedPosition.x)
+	mouse_strength = sqrt((correctedPosition.x ** 2) + (correctedPosition.y ** 2))
+	
+
 func _physics_process(delta: float) -> void:
 	if is_grounded():
 		var hit_point = $RayCast3D.get_collision_point()
@@ -71,21 +85,41 @@ func _physics_process(delta: float) -> void:
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, true)
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, true)
-			if launching:
-				launching_controls()
-			else:
-				aiming_controls()
-			draw_aiming()
+			match selected_cheat:
+				CHEATS.NONE:
+					$CanvasLayer/CheatMenu.show()
+					if launching:
+						launching_controls()
+					else:
+						aiming_controls()
+					draw_aiming()
+				CHEATS.WIND:
+					$CanvasLayer/CheatMenu.hide()
+					get_mouse_properties()
+					wind_controller.wind_direction = mouse_direction
+					wind_controller.wind_strength = clampf(mouse_strength, 0, 300)
+					if Input.is_action_just_pressed("cheat_confirm"):
+						selected_cheat = CHEATS.NONE
+				CHEATS.BALL:
+					$CanvasLayer/CheatMenu.hide()
+				CHEATS.MOLE:
+					$CanvasLayer/CheatMenu.hide()
+				CHEATS.TILT:
+					$CanvasLayer/CheatMenu.hide()
+					get_mouse_properties()
 		BALL_STATE.IN_MOTION:
+			$CanvasLayer/CheatMenu.hide()
 			hide_aiming()
 			check_resting()
 		BALL_STATE.RESTING:
+			$CanvasLayer/CheatMenu.hide()
 			hide_aiming()
 			previous_position = global_position
 			# temporarily:
 			wind_controller.randomize_wind()
 			state = BALL_STATE.AIMABLE
 		BALL_STATE.HAZARD:
+			$CanvasLayer/CheatMenu.hide()
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
@@ -214,3 +248,19 @@ func draw_aiming():
 		sha.position.x = cos(ball_yaw) * cos(ball_pitch) * (i + 1) * 0.5
 		sha.position.z = sin(ball_yaw) * cos(ball_pitch) * (i + 1) * 0.5
 		
+
+
+func _on_wind_cheat_pressed() -> void:
+	selected_cheat = CHEATS.WIND
+
+
+func _on_ball_cheat_pressed() -> void:
+	selected_cheat = CHEATS.BALL
+
+
+func _on_mole_cheat_pressed() -> void:
+	selected_cheat = CHEATS.MOLE
+
+
+func _on_tilt_cheat_pressed() -> void:
+	selected_cheat = CHEATS.TILT

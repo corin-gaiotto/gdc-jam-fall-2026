@@ -2,6 +2,11 @@
 
 [ext_resource type="Script" uid="uid://ch4751228hbmv" path="res://scripts/golf_ball.gd" id="1_8kg14"]
 [ext_resource type="Script" uid="uid://bh1gfumhyjtey" path="res://scripts/ray_cast_3d.gd" id="2_s1xsf"]
+[ext_resource type="Texture2D" uid="uid://cgnlh2cqrho1p" path="res://assets/art/ui/icons/icon_fan.png" id="3_70p3a"]
+[ext_resource type="Script" uid="uid://bgfq3c7w6qeyj" path="res://scripts/cheat_button.gd" id="3_lsbob"]
+[ext_resource type="Texture2D" uid="uid://dr37xo86i3eik" path="res://assets/art/ui/icons/icon_ball.png" id="4_2nwmu"]
+[ext_resource type="Texture2D" uid="uid://kbwrracy24gp" path="res://assets/art/ui/icons/icon_mole.png" id="5_baqnq"]
+[ext_resource type="Texture2D" uid="uid://inlpa2a5rvt2" path="res://assets/art/ui/icons/icon_tilt.png" id="6_phv0k"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_furft"]
 friction = 0.0
@@ -74,3 +79,125 @@ mesh = SubResource("CylinderMesh_rbsrl")
 
 [node name="AimShadow3" type="MeshInstance3D" parent="RayCast3D" unique_id=412817229]
 mesh = SubResource("CylinderMesh_rbsrl")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=693556517]
+
+[node name="CheatMenu" type="Control" parent="CanvasLayer" unique_id=6104824]
+visible = false
+custom_minimum_size = Vector2(320, 320)
+layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.575
+anchor_right = 0.5
+anchor_bottom = 0.575
+offset_left = -160.0
+offset_top = -160.0
+offset_right = 160.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WindCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=1825220289]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -120.0
+offset_bottom = -120.0
+pivot_offset = Vector2(40, 40)
+expand_icon = true
+script = ExtResource("3_lsbob")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/CheatMenu/WindCheat" unique_id=1267137102]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_70p3a")
+expand_mode = 1
+
+[node name="BallCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=618921465]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 40.0
+offset_top = -40.0
+offset_bottom = -40.0
+pivot_offset = Vector2(40, 40)
+expand_icon = true
+script = ExtResource("3_lsbob")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/CheatMenu/BallCheat" unique_id=257868823]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_2nwmu")
+expand_mode = 1
+
+[node name="MoleCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=382854994]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = 40.0
+pivot_offset = Vector2(40, 40)
+expand_icon = true
+script = ExtResource("3_lsbob")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/CheatMenu/MoleCheat" unique_id=2034052446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_baqnq")
+expand_mode = 1
+
+[node name="TiltCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=1727006617]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -40.0
+offset_right = -120.0
+offset_bottom = -40.0
+pivot_offset = Vector2(40, 40)
+expand_icon = true
+script = ExtResource("3_lsbob")
+
+[node name="Texture" type="TextureRect" parent="CanvasLayer/CheatMenu/TiltCheat" unique_id=223343545]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_phv0k")
+expand_mode = 1
+
+[connection signal="pressed" from="CanvasLayer/CheatMenu/WindCheat" to="." method="_on_wind_cheat_pressed"]
+[connection signal="pressed" from="CanvasLayer/CheatMenu/BallCheat" to="." method="_on_ball_cheat_pressed"]
+[connection signal="pressed" from="CanvasLayer/CheatMenu/MoleCheat" to="." method="_on_mole_cheat_pressed"]
+[connection signal="pressed" from="CanvasLayer/CheatMenu/TiltCheat" to="." method="_on_tilt_cheat_pressed"]
