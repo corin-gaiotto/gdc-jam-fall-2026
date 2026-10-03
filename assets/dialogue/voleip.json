@@ -1,0 +1,103 @@
+{
+	"intro":[
+		{"type":"player_portrait", "expression":"default"},
+		{
+			"type":"narrator",
+			"text":[
+				"\"Hey you, the caddy over there!\" You turned around after wiping the sweat off your fur, noticing the small Vole flagging you down."
+			]
+		},
+		{"type":"opponent_portrait", "expression":"default_talk"},
+		{
+			"type":"opponent",
+			"text":[
+				"That was an interesting match you got there, care for another?"
+			]
+		},
+		{"type":"opponent_portrait", "expression":"default"},
+		{"type":"player_portrait", "expression":"default_club"},
+		{
+			"type":"narrator",
+			"text":[
+				"You understood that this was the final test."
+			]
+		}
+	],
+	"cheat_noticed":[
+		[
+			{"type":"player_portrait", "expression":"default"},
+			{"type":"opponent_portrait", "expression":"offended"},
+			{
+				"type":"opponent",
+				"text":[
+					"You think you can cheat in front of me? We run this damn place, you rat."
+				],
+				"auto_advance":true
+			},
+			{"type":"player_portrait", "expression":"default"},
+			{
+				"type":"timed_options",
+				"options":[
+					{
+						"text":" \"...\" (Dangles beetroot in front of her eyes) ",
+						"stat":"greed",
+						"embarrassment_change":-1,
+						"suspicion_change":-1,
+						"result_success":[
+							{"type":"player_portrait", "expression":"beetroot"},
+							{"type":"opponent_portrait", "expression":"greed"},
+							{
+								"type":"opponent",
+								"text":[
+									"Well, I suppose we can overlook this as an act of resourcefulness."
+								]
+							}
+						]
+					},
+					{
+						"text":"Aren't you the rat here?",
+						"stat":"emotional_stability",
+						"embarrassment_change":-2,
+						"suspicion_change":1,
+						"result_failure":[
+							{"type":"player_portrait", "expression":"sus"},
+							{"type":"opponent_portrait", "expression":"offended"},
+							{
+								"type":"opponent",
+								"text":[
+									"That was your last straw, now you’ve really pissed me off!"
+								]
+							}
+						]
+					},
+					{
+						"text":"Not cheating as much as making use of the existing loopholes y'all left on the course.",
+						"stat":"gullibility",
+						"embarrassment_change":1,
+						"suspicion_change":-2,
+						"result_success":[
+							{"type":"player_portrait", "expression":"rizz"},
+							{"type":"opponent_portrait", "expression":"default_talk"},
+							{
+								"type":"opponent",
+								"text":[
+									"Hmm, fair play, I guess; you'll fit right in with us."
+								]
+							}
+						],
+						"result_failure":[
+							{"type":"player_portrait", "expression":"embarrass"},
+							{"type":"opponent_portrait", "expression":"offended"},
+							{
+								"type":"opponent",
+								"text":[
+									"You accus'n us of cheating?"
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	]
+}

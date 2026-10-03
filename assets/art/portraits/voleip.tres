@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PortraitData" format=3 uid="uid://c3cghry8j0f6o"]
+
+[ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="1_8lscs"]
+[ext_resource type="Texture2D" uid="uid://dcjgtd6k6nuyd" path="res://assets/art/portraits/voleip_default.png" id="1_qxkfe"]
+[ext_resource type="Texture2D" uid="uid://7dcdivsg4o4j" path="res://assets/art/portraits/voleip_default_talk.png" id="2_mjdo1"]
+[ext_resource type="Texture2D" uid="uid://cgb5mishtafyi" path="res://assets/art/portraits/voleip_greed.png" id="3_0aa07"]
+[ext_resource type="Texture2D" uid="uid://cllusw7l1jpo7" path="res://assets/art/portraits/voleip_offended.png" id="4_ggshb"]
+
+[resource]
+script = ExtResource("1_8lscs")
+data = Dictionary[String, Texture2D]({
+"default": ExtResource("1_qxkfe"),
+"default_talk": ExtResource("2_mjdo1"),
+"greed": ExtResource("3_0aa07"),
+"offended": ExtResource("4_ggshb")
+})
+metadata/_custom_type_script = "uid://dc3f8sjccrqkd"

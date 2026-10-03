@@ -25,6 +25,36 @@ var max_embarrassment: int = 20
 			preload("res://scenes/golfMaps/test_golf_map.tscn"),
 			preload("res://scenes/golfMaps/test_golf_map.tscn")
 		]
+	},
+	{
+		"name": "prohog",
+		"stats": {
+			"perception": 2.0,
+			"gullibility": 2.0,
+			"greed": 0.0,
+			"emotional_stability": 1.0
+		},
+		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/prohog.json"),
+		"maps": [
+			preload("res://scenes/golfMaps/test_golf_map.tscn"),
+			preload("res://scenes/golfMaps/test_golf_map.tscn"),
+			preload("res://scenes/golfMaps/test_golf_map.tscn")
+		]
+	},
+	{
+		"name": "voleip",
+		"stats": {
+			"perception": 3.0,
+			"gullibility": 1.0,
+			"greed": 3.0,
+			"emotional_stability": 3.0
+		},
+		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/voleip.json"),
+		"maps": [
+			preload("res://scenes/golfMaps/test_golf_map.tscn"),
+			preload("res://scenes/golfMaps/test_golf_map.tscn"),
+			preload("res://scenes/golfMaps/test_golf_map.tscn")
+		]
 	}
 ]
 

@@ -4,6 +4,8 @@
 [ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="2_pbb6w"]
 [ext_resource type="Resource" uid="uid://bxyfafc0barj4" path="res://assets/art/portraits/gopher.tres" id="3_phas5"]
 [ext_resource type="Resource" uid="uid://ch581w5mhkvyr" path="res://assets/art/portraits/chippy.tres" id="4_phas5"]
+[ext_resource type="Resource" uid="uid://cixmwm4td4r74" path="res://assets/art/portraits/prohog.tres" id="5_phas5"]
+[ext_resource type="Resource" uid="uid://c3cghry8j0f6o" path="res://assets/art/portraits/voleip.tres" id="6_33int"]
 
 [node name="DialoguePortrait" type="Control" unique_id=1415108031]
 layout_mode = 3
@@ -15,7 +17,9 @@ grow_vertical = 2
 script = ExtResource("1_mbai0")
 portrait_data = Dictionary[String, ExtResource("2_pbb6w")]({
 "chippy": ExtResource("4_phas5"),
-"gopher": ExtResource("3_phas5")
+"gopher": ExtResource("3_phas5"),
+"prohog": ExtResource("5_phas5"),
+"voleip": ExtResource("6_33int")
 })
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1447689139]

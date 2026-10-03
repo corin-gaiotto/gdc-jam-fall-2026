@@ -10,3 +10,7 @@ class_name DialoguePortrait
 func change_portrait(portrait_name: String, portrait_expression: String):
 	portrait_name_label.text = portrait_name.capitalize()
 	portrait_texture_rect.texture = portrait_data[portrait_name].data[portrait_expression]
+
+func reset_portrait():
+	portrait_name_label.text = ""
+	portrait_texture_rect.texture = null

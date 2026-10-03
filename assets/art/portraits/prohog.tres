@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PortraitData" format=3 uid="uid://cixmwm4td4r74"]
+
+[ext_resource type="Texture2D" uid="uid://cedek75j7n8h" path="res://assets/art/portraits/prohog_angry.png" id="1_67k7y"]
+[ext_resource type="Script" uid="uid://dc3f8sjccrqkd" path="res://scripts/portrait_data.gd" id="1_uahp5"]
+[ext_resource type="Texture2D" uid="uid://bnkg7e58cfwqr" path="res://assets/art/portraits/prohog_confident.png" id="2_prp5a"]
+[ext_resource type="Texture2D" uid="uid://ce8mttsg6qorb" path="res://assets/art/portraits/prohog_default.png" id="3_1ap0q"]
+[ext_resource type="Texture2D" uid="uid://c5vbefrek35kj" path="res://assets/art/portraits/prohog_default_talk.png" id="4_6dr5o"]
+
+[resource]
+script = ExtResource("1_uahp5")
+data = Dictionary[String, Texture2D]({
+"angry": ExtResource("1_67k7y"),
+"confident": ExtResource("2_prp5a"),
+"default": ExtResource("3_1ap0q"),
+"default_talk": ExtResource("4_6dr5o")
+})
+metadata/_custom_type_script = "uid://dc3f8sjccrqkd"

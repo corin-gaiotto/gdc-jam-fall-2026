@@ -32,7 +32,8 @@ func read_dialogue_file(filename):
 
 func play_dialogue(data: Array[Variant], opponent_name: String):
 	# plays the Dialogue Object
-	print(data)
+	player_portrait.reset_portrait()
+	opponent_portrait.reset_portrait()
 	var command_index = 0
 	timing = false
 	timing_result = -1

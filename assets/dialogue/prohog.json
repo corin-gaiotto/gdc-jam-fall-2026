@@ -1,0 +1,106 @@
+{
+	"intro":[
+		{"type":"player_portrait", "expression":"default"},
+		{
+			"type":"narrator",
+			"text":[
+				"After celebrating your ill-earned victory of an absolute beatdown of a golf toddler, you saw the veteran groundhog who frequents this course. If you want the attention of the VoleIPs, you need to win against an appropriate challenger."
+			]
+		},
+		{"type":"opponent_portrait", "expression":"default"},
+		{
+			"type":"narrator",
+			"text":[
+				"Waving them down, you offer a challenge. \"I'm new here, but I'm sure I could beat you!\""
+			]
+		},
+	],
+	"cheat_noticed":[
+		[
+			{"type":"player_portrait", "expression":"default"},
+			{"type":"opponent_portrait", "expression":"default_talk"},
+			{
+				"type":"opponent",
+				"text":[
+					"I can tell with my experience, that trajectory just now could not have been possible. Care to explain?"
+				],
+				"auto_advance":true
+			},
+			{"type":"player_portrait", "expression":"default"},
+			{"type":"opponent_portrait", "expression":"default"},
+			{
+				"type":"timed_options",
+				"options":[
+					{
+						"text":"Care for a beetroot break?",
+						"stat":"greed",
+						"embarrassment_change":-1,
+						"suspicion_change":-1,
+						"result_failure":[
+							{"type":"player_portrait", "expression":"beetroot"},
+							{"type":"opponent_portrait", "expression":"angry"},
+							{
+								"type":"opponent",
+								"text":[
+									"Are you making fun of me?"
+								]
+							}
+						]
+					},
+					{
+						"text":"Experience aside, according to Squirreldinger’s theories, any state of that swing could've been possible.",
+						"stat":"emotional_stability",
+						"embarrassment_change":-2,
+						"suspicion_change":1,
+						"result_success":[
+							{"type":"player_portrait", "expression":"default_talk"},
+							{"type":"opponent_portrait", "expression":"default_talk"},
+							{
+								"type":"opponent",
+								"text":[
+									"Let’s not bring any fancy equations into this and just move on."
+								]
+							}
+						],
+						"result_failure":[
+							{"type":"player_portrait", "expression":"sus"},
+							{"type":"opponent_portrait", "expression":"angry"},
+							{
+								"type":"opponent",
+								"text":[
+									"Are you making fun of me?"
+								]
+							}
+						]
+					},
+					{
+						"text":"Uhh... hey, your fur is really well maintained, what’s your coatcare routine?",
+						"stat":"gullibility",
+						"embarrassment_change":1,
+						"suspicion_change":-2,
+						"result_success":[
+							{"type":"player_portrait", "expression":"rizz"},
+							{"type":"opponent_portrait", "expression":"confident"},
+							{
+								"type":"opponent",
+								"text":[
+									"Flattery will get you nowhere, but since you asked..."
+								]
+							}
+						],
+						"result_failure":[
+							{"type":"player_portrait", "expression":"embarrass"},
+							{"type":"opponent_portrait", "expression":"angry"},
+							{
+								"type":"opponent",
+								"text":[
+									"Don't think you can change the subject that easily!"
+								]
+							}
+						]
+					}
+				]
+			}
+		]
+	]
+}
