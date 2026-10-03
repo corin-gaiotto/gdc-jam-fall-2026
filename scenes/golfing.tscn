@@ -27,9 +27,10 @@ metadata/_editor_floor_ = Vector3(0, -2, 0)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=171808503]
 environment = SubResource("Environment_2j3k6")
 
-[node name="GolfBall" parent="." unique_id=1367131474 node_paths=PackedStringArray("wind_controller") instance=ExtResource("2_xbj8l")]
+[node name="GolfBall" parent="." unique_id=1367131474 node_paths=PackedStringArray("wind_controller", "gridmap") instance=ExtResource("2_xbj8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19504404, -0.8486372, 0.5544168)
 wind_controller = NodePath("../WindController")
+gridmap = NodePath("../GridMap")
 
 [node name="WindController" parent="." unique_id=1318375014 instance=ExtResource("4_rbsrl")]
 transform = Transform3D(1, -2.9802322e-08, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 5.9604645e-08, 0, 5.9604645e-08)

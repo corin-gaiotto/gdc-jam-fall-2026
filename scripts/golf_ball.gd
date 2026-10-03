@@ -8,6 +8,7 @@ var camera_rotation: Vector3 = Vector3(deg_to_rad(-30), deg_to_rad(45), 0)
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
 @export var wind_controller: WindController
+@export var gridmap: GolfMap
 
 enum BALL_STATE {AIMABLE, IN_MOTION, RESTING, HAZARD}
 enum CHEATS {NONE, WIND, BALL, MOLE, TILT}
@@ -21,6 +22,8 @@ var state: BALL_STATE = BALL_STATE.AIMABLE
 var selected_cheat: CHEATS = CHEATS.NONE
 var mouse_direction: float = 0 # used for wind and tilt cheats
 var mouse_strength: float = 0 # used for wind and tilt cheats
+
+var cheated: bool = 0
 
 var stroke_count: int = 0
 @onready var previous_position: Vector3 = global_position
@@ -51,6 +54,10 @@ var launch_percent_direction: float = 1 # whether bar is moving up or down (1 or
 var launch_percent: float = 0
 var launch_strength: float = 10 # strength of the strongest shot
 
+func set_cheated():
+	cheated = true
+	selected_cheat = CHEATS.NONE
+
 func get_mouse_properties():
 	var rawPosition = get_viewport().get_mouse_position() - Vector2(1920/2, 1080/2)
 	var correctedPosition = Vector3(rawPosition.x, rawPosition.y, 0) * Basis.from_euler(camera_rotation)
@@ -80,6 +87,8 @@ func _physics_process(delta: float) -> void:
 		apply_central_force(Vector3(cos(wind_controller.wind_direction), 0, sin(wind_controller.wind_direction)) * wind_controller.wind_strength * delta)
 	match state:
 		BALL_STATE.AIMABLE:
+			if $RayCast3D.is_colliding():
+				position.y += 0.01
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
@@ -87,26 +96,57 @@ func _physics_process(delta: float) -> void:
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, true)
 			match selected_cheat:
 				CHEATS.NONE:
-					$CanvasLayer/CheatMenu.show()
+					if cheated:
+						$CanvasLayer/CheatMenu.hide()
+					else:
+						$CanvasLayer/CheatMenu.show()
 					if launching:
 						launching_controls()
 					else:
 						aiming_controls()
 					draw_aiming()
 				CHEATS.WIND:
+					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
 					get_mouse_properties()
 					wind_controller.wind_direction = mouse_direction
 					wind_controller.wind_strength = clampf(mouse_strength, 0, 300)
 					if Input.is_action_just_pressed("cheat_confirm"):
-						selected_cheat = CHEATS.NONE
+						set_cheated()
 				CHEATS.BALL:
+					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
 				CHEATS.MOLE:
+					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
+					var hole_pos = gridmap.get_hole_position()
+					if Input.is_action_just_pressed("ball_angle_down"):
+						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(0, 0, 1)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(0, 0, 1))]
+						gridmap.set_cell_item(hole_pos + Vector3i(0, 0, 1), 6, 0)
+						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
+						set_cheated()
+					elif Input.is_action_just_pressed("ball_angle_up"):
+						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(0, 0, -1)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(0, 0, -1))]
+						gridmap.set_cell_item(hole_pos + Vector3i(0, 0, -1), 6, 0)
+						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
+						set_cheated()
+					elif Input.is_action_just_pressed("ball_angle_left"):
+						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(-1, 0, 0)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(-1, 0, 0))]
+						gridmap.set_cell_item(hole_pos + Vector3i(-1, 0, 0), 6, 0)
+						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
+						set_cheated()
+					elif Input.is_action_just_pressed("ball_angle_right"):
+						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(1, 0, 0)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(1, 0, 0))]
+						gridmap.set_cell_item(hole_pos + Vector3i(1, 0, 0), 6, 0)
+						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
+						set_cheated()
 				CHEATS.TILT:
+					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
 					get_mouse_properties()
+					gridmap.rotation = Vector3(cos(mouse_direction) * deg_to_rad(2) * clampf(mouse_strength/300, 0, 1), 0, sin(mouse_direction) * deg_to_rad(2) * clampf(mouse_strength/300, 0, 1))
+					if Input.is_action_just_pressed("cheat_confirm"):
+						set_cheated()
 		BALL_STATE.IN_MOTION:
 			$CanvasLayer/CheatMenu.hide()
 			hide_aiming()
@@ -115,9 +155,15 @@ func _physics_process(delta: float) -> void:
 			$CanvasLayer/CheatMenu.hide()
 			hide_aiming()
 			previous_position = global_position
-			# temporarily:
+			
 			wind_controller.randomize_wind()
 			state = BALL_STATE.AIMABLE
+			gridmap.rotation = Vector3(0, 0, 0)
+			gravity_scale = 1.0
+			
+			## LATER: run the roll for if you're caught cheating here
+			
+			cheated = false
 		BALL_STATE.HAZARD:
 			$CanvasLayer/CheatMenu.hide()
 			linear_velocity = Vector3.ZERO
@@ -255,7 +301,8 @@ func _on_wind_cheat_pressed() -> void:
 
 
 func _on_ball_cheat_pressed() -> void:
-	selected_cheat = CHEATS.BALL
+	set_cheated()
+	gravity_scale = 0.5
 
 
 func _on_mole_cheat_pressed() -> void:
