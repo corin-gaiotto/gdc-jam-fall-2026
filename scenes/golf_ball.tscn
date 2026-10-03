@@ -15,7 +15,19 @@ bounce = 0.15
 [sub_resource type="SphereShape3D" id="SphereShape3D_2j3k6"]
 radius = 0.12
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lsbob"]
+render_priority = 1
+transparency = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0, 0.13333334, 0, 1)
+stencil_mode = 3
+stencil_flags = 1
+stencil_compare = 5
+metadata/_stencil_owned = true
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ysr2"]
+next_pass = SubResource("StandardMaterial3D_lsbob")
 stencil_mode = 2
 stencil_flags = 2
 stencil_color = Color(0, 0.13333334, 0, 1)
@@ -49,6 +61,7 @@ bottom_radius = 0.063
 height = 0.01
 
 [node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
+collision_layer = 5
 collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_furft")
 continuous_cd = true

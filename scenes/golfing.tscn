@@ -2,7 +2,6 @@
 
 [ext_resource type="Script" uid="uid://lo5phwor48ra" path="res://scripts/golf_game_manager.gd" id="1_luvbl"]
 [ext_resource type="PackedScene" uid="uid://d3p7awstojlyc" path="res://scenes/game_camera.tscn" id="1_rbsrl"]
-[ext_resource type="PackedScene" uid="uid://dukfjrg7t7ofw" path="res://scenes/golfMaps/test_golf_map.tscn" id="2_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://bjeuxns80ro51" path="res://scenes/golf_ball.tscn" id="2_xbj8l"]
 [ext_resource type="PackedScene" uid="uid://c28ksxkp4mhey" path="res://scenes/wind_controller.tscn" id="4_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
@@ -14,6 +13,37 @@ ambient_light_source = 3
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_3ysr2"]
+height = 0.2
+radius = 0.25
+
+[sub_resource type="Gradient" id="Gradient_luvbl"]
+offsets = PackedFloat32Array(0, 0.28688523, 0.55737704, 0.77868855, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0.91666675, 1, 0, 1, 0, 1, 0.083333254, 1, 0, 0.4666667, 1, 1, 0.5833335, 0, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_qdmf0"]
+gradient = SubResource("Gradient_luvbl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2j3k6"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 25.0
+radial_velocity_min = -5.0000224
+radial_velocity_max = 4.9999776
+color_initial_ramp = SubResource("GradientTexture1D_qdmf0")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i1d0b"]
+vertex_color_use_as_albedo = true
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_3ysr2"]
+material = SubResource("StandardMaterial3D_i1d0b")
+size = Vector2(0.2, 0.2)
+
 [node name="Golfing" type="Node3D" unique_id=2049913240]
 script = ExtResource("1_luvbl")
 
@@ -24,18 +54,33 @@ transform = Transform3D(0.8660253, -0.48296288, 0.12940954, 0, 0.25881904, 0.965
 transform = Transform3D(0.7071067, -0.3535534, 0.61237234, 0, 0.8660254, 0.5, -0.7071067, -0.3535534, 0.61237234, 1, 2, 1)
 tracking_ball = NodePath("../GolfBall")
 
-[node name="GridMap" parent="." unique_id=1748631992 instance=ExtResource("2_rbsrl")]
-metadata/_editor_floor_ = Vector3(0, -2, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=171808503]
 environment = SubResource("Environment_2j3k6")
 
-[node name="GolfBall" parent="." unique_id=1367131474 node_paths=PackedStringArray("wind_controller", "gridmap") instance=ExtResource("2_xbj8l")]
+[node name="GolfBall" parent="." unique_id=1367131474 node_paths=PackedStringArray("wind_controller") instance=ExtResource("2_xbj8l")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19504404, -0.8486372, 0.5544168)
 wind_controller = NodePath("../WindController")
-gridmap = NodePath("../GridMap")
 
 [node name="WindController" parent="." unique_id=1318375014 instance=ExtResource("4_rbsrl")]
 transform = Transform3D(1, -2.9802322e-08, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 5.9604645e-08, 0, 5.9604645e-08)
 
 [node name="DialogueUI" parent="." unique_id=92798159 instance=ExtResource("6_h8u8v")]
+
+[node name="WinArea" type="Area3D" parent="." unique_id=785506052]
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WinArea" unique_id=1642837446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+shape = SubResource("CylinderShape3D_3ysr2")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="WinArea" unique_id=1385140118]
+emitting = false
+amount = 128
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.75
+process_material = SubResource("ParticleProcessMaterial_2j3k6")
+draw_pass_1 = SubResource("QuadMesh_3ysr2")
+
+[connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]

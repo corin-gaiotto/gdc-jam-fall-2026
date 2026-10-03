@@ -67,6 +67,21 @@ func _ready():
 	$GolfBall.check_if_caught.connect(check_if_caught)
 	
 	await introduce_opponent()
+	
+	load_map()
+
+func load_map():
+	var map: GolfMap = opponents[opponent_index]["maps"][opponent_map_index].instantiate()
+	add_child(map)
+	$GolfBall.gridmap = map
+	
+	# place ball at position of gridmap marker
+	$GolfBall.position = map.get_node("SpawnPoint").position
+	
+	# find hole, and place win area in it
+	var hole_coords: Vector3i = map.get_hole_position()
+	
+	$WinArea.position = map.map_to_local(hole_coords)
 
 func introduce_opponent():
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
@@ -98,3 +113,25 @@ func check_if_caught():
 	else:
 		# safe for now. do nothing
 		pass
+
+func next_map():
+	$GolfBall.cheated = false
+	$GolfBall.state = GolfBall.BALL_STATE.RESTING
+	opponent_map_index += 1
+	if opponent_map_index > 2:
+		opponent_map_index = 0
+		opponent_index += 1
+		if opponent_index > 2:
+			print("win!")
+		else:
+			$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
+			await introduce_opponent()
+	load_map()
+
+func _on_win_area_body_entered(body: Node3D) -> void:
+	$WinArea/GPUParticles3D.emitting = true
+	await get_tree().create_timer(5.0).timeout
+	if $GolfBall.cheated:
+		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
+		await check_if_caught()
+	await next_map()
