@@ -1,12 +1,7 @@
 [gd_resource type="PrismMesh" format=3 uid="uid://ynuejkqq0bo3"]
 
-[ext_resource type="Texture2D" uid="uid://c4e4uoka4rdda" path="res://assets/art/icon.svg" id="1_u0vbu"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jcqmb"]
-albedo_texture = ExtResource("1_u0vbu")
-uv1_scale = Vector3(2, 2, 2)
-uv1_offset = Vector3(0.5, 0, 0)
+[ext_resource type="Material" uid="uid://j4yhxcv8k83f" path="res://resources/materials/rough.tres" id="1_u0vbu"]
 
 [resource]
-material = SubResource("StandardMaterial3D_jcqmb")
+material = ExtResource("1_u0vbu")
 left_to_right = 0.0

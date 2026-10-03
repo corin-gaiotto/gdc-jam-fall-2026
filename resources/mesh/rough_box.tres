@@ -1,7 +1,6 @@
 [gd_resource type="BoxMesh" format=3 uid="uid://vv3elcu4nltx"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2pfsm"]
-albedo_color = Color(0, 0.3372549, 0, 1)
+[ext_resource type="Material" uid="uid://j4yhxcv8k83f" path="res://resources/materials/rough.tres" id="1_8y0bo"]
 
 [resource]
-material = SubResource("StandardMaterial3D_2pfsm")
+material = ExtResource("1_8y0bo")
