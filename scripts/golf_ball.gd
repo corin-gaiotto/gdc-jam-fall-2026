@@ -1,5 +1,7 @@
 extends RigidBody3D
 
+class_name GolfBall
+
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
 
