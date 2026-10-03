@@ -16,6 +16,9 @@ bounce = 0.15
 radius = 0.12
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ysr2"]
+stencil_mode = 2
+stencil_flags = 2
+stencil_color = Color(0, 0.13333334, 0, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_2j3k6"]
 material = SubResource("StandardMaterial3D_3ysr2")
