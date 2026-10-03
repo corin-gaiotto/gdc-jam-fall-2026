@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://dnw4bx1akagbt"]
 
+[ext_resource type="Script" uid="uid://lo5phwor48ra" path="res://scripts/golf_game_manager.gd" id="1_luvbl"]
 [ext_resource type="PackedScene" uid="uid://d3p7awstojlyc" path="res://scenes/game_camera.tscn" id="1_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://dukfjrg7t7ofw" path="res://scenes/golfMaps/test_golf_map.tscn" id="2_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://bjeuxns80ro51" path="res://scenes/golf_ball.tscn" id="2_xbj8l"]
@@ -13,6 +14,7 @@ ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.1
 
 [node name="Golfing" type="Node3D" unique_id=2049913240]
+script = ExtResource("1_luvbl")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=448123260]
 transform = Transform3D(0.8660253, -0.48296288, 0.12940954, 0, 0.25881904, 0.9659258, -0.49999997, -0.8365162, 0.22414389, 0.03189373, 1.0257893, 0)
