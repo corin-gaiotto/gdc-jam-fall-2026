@@ -36,9 +36,9 @@ var max_embarrassment: int = 20
 		},
 		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/prohog.json"),
 		"maps": [
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn")
+			preload("res://scenes/golfMaps/golf_map4.tscn"),
+			preload("res://scenes/golfMaps/golf_map3.tscn"),
+			preload("res://scenes/golfMaps/golf_map3.tscn")
 		]
 	},
 	{
@@ -51,15 +51,15 @@ var max_embarrassment: int = 20
 		},
 		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/voleip.json"),
 		"maps": [
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn")
+			preload("res://scenes/golfMaps/golf_map3.tscn"),
+			preload("res://scenes/golfMaps/golf_map3.tscn"),
+			preload("res://scenes/golfMaps/golf_map3.tscn")
 		]
 	}
 ]
 
-var opponent_index: int = 0
-var opponent_map_index: int = 1
+var opponent_index: int = 1
+var opponent_map_index: int = 0
 
 func _ready():
 	$DialogueUI.golf_game_manager = self
