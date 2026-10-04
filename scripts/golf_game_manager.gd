@@ -75,7 +75,7 @@ func _ready():
 
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 	$GolfBall.hide()
-	await $Cutscene.play_cutscene()
+	await $Cutscene.play_cutscene("intro")
 
 	await introduce_opponent()
 	
@@ -160,6 +160,7 @@ func next_map():
 		opponent_index += 1
 		if opponent_index > 2:
 			print("win!")
+			await $Cutscene.play_cutscene("win")
 		else:
 			$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 			await introduce_opponent()
