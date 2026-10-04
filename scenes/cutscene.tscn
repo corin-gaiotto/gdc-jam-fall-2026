@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://uddo8se6exop"]
+
+[ext_resource type="PackedScene" uid="uid://dl3ikunk3mgt7" path="res://scenes/ui/dialogue_box.tscn" id="1_edmg7"]
+[ext_resource type="Script" uid="uid://baorhk4ohtfd5" path="res://scripts/cutscene.gd" id="2_cutsc"]
+
+[node name="Cutscene" type="Node2D" unique_id=2031391231]
+z_index = 5
+script = ExtResource("2_cutsc")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1154184524]
+custom_minimum_size = Vector2(0, 780)
+offset_right = 1920.0
+offset_bottom = 780.0
+
+[node name="PanelContainer" type="VBoxContainer" parent="." unique_id=1658915837]
+z_index = 1
+offset_top = 780.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="DialogueBox2" parent="PanelContainer" unique_id=128716282 instance=ExtResource("1_edmg7")]
+custom_minimum_size = Vector2(960, 300)
+layout_mode = 2

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GDC JAM FALL 2026"
-run/main_scene="uid://dnw4bx1akagbt"
+run/main_scene="uid://b6ynhi6abv33f"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://assets/art/icon.svg"
 
