@@ -7,6 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://c4rglsbhdpqbq" path="res://scenes/ui/hp_bars.tscn" id="6_3clis"]
 [ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
 [ext_resource type="Theme" uid="uid://bqpaxtpbevjpb" path="res://scenes/ui/main_ui_theme.tres" id="7_3clis"]
+[ext_resource type="AudioStream" uid="uid://csaf64mqf78rg" path="res://assets/audio/music/ambient_mixed.ogg" id="8_xk2m5"]
+[ext_resource type="AudioStream" uid="uid://b2lt86ip7plia" path="res://assets/audio/music/challenge_mixed.ogg" id="9_qhfhx"]
+[ext_resource type="AudioStream" uid="uid://b58anun5q65td" path="res://assets/audio/music/dream1_mixed.ogg" id="10_o0i6p"]
+[ext_resource type="AudioStream" uid="uid://brls17umtgd8l" path="res://assets/audio/music/dream2_mixed.ogg" id="11_dorrv"]
+[ext_resource type="AudioStream" uid="uid://xl6rf178i10w" path="res://assets/audio/music/dream3_mixed.ogg" id="12_q53ni"]
+[ext_resource type="AudioStream" uid="uid://dhpn7fchkpqcu" path="res://assets/audio/music/jovial_mixed.ogg" id="13_lfrjp"]
+[ext_resource type="Script" uid="uid://bsan4cw6bnr6l" path="res://scenes/music_player.gd" id="14_qhfhx"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
 background_mode = 2
@@ -47,6 +54,323 @@ material = SubResource("StandardMaterial3D_i1d0b")
 size = Vector2(0.2, 0.2)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2j3k6"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_2j3k6"]
+clip_count = 6
+clip_0/name = &"title"
+clip_0/stream = ExtResource("8_xk2m5")
+clip_0/auto_advance = 0
+clip_1/name = &"challenge"
+clip_1/stream = ExtResource("9_qhfhx")
+clip_1/auto_advance = 0
+clip_2/name = &"opponent_1"
+clip_2/stream = ExtResource("10_o0i6p")
+clip_2/auto_advance = 0
+clip_3/name = &"opponent_2"
+clip_3/stream = ExtResource("11_dorrv")
+clip_3/auto_advance = 0
+clip_4/name = &"opponent_3"
+clip_4/stream = ExtResource("12_q53ni")
+clip_4/auto_advance = 0
+clip_5/name = &"jovial"
+clip_5/stream = ExtResource("13_lfrjp")
+clip_5/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(-1, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(0, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 2): {
+"fade_beats": 4.0,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 3): {
+"fade_beats": 4.0,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 4): {
+"fade_beats": 4.0,
+"fade_mode": 1,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(1, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(2, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(3, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(4, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(4, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, -1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 0): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 1): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 2): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 3): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 4): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 1
+},
+Vector2i(5, 5): {
+"fade_beats": 1.0,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [node name="Golfing" type="Node3D" unique_id=2049913240]
 script = ExtResource("1_luvbl")
@@ -125,6 +449,11 @@ text = "Z or SHIFT to zoom out"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1546935596]
+stream = SubResource("AudioStreamInteractive_2j3k6")
+autoplay = true
+script = ExtResource("14_qhfhx")
 
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
 [connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]
