@@ -1,0 +1,49 @@
+[gd_resource type="Theme" format=3 uid="uid://4xopfyxrvjuo"]
+
+[ext_resource type="FontFile" uid="uid://e3lfq17xn8je" path="res://scenes/ui/Fredoka-SemiBold.ttf" id="1_cjd12"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cjd12"]
+bg_color = Color(1, 0.9647059, 0.91764706, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+corner_radius_top_left = 64
+corner_radius_top_right = 64
+corner_radius_bottom_right = 64
+corner_radius_bottom_left = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50t0y"]
+bg_color = Color(1, 0.9647059, 0.91764706, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 16
+border_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[resource]
+Button/colors/font_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+Button/colors/font_disabled_color = Color(0, 0, 0, 0.5019608)
+Button/colors/font_focus_color = Color(0.5166111, 0.21550977, 0.22654366, 1)
+Button/colors/font_hover_color = Color(1, 0.9647059, 0.91764706, 1)
+Button/colors/font_hover_pressed_color = Color(1, 0.9647059, 0.91764706, 1)
+Button/fonts/font = ExtResource("1_cjd12")
+Button/styles/disabled = SubResource("StyleBoxFlat_cjd12")
+Button/styles/disabled_mirrored = SubResource("StyleBoxFlat_cjd12")
+Button/styles/focus = SubResource("StyleBoxFlat_cjd12")
+Button/styles/hover = SubResource("StyleBoxFlat_cjd12")
+Button/styles/hover_mirrored = SubResource("StyleBoxFlat_cjd12")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_cjd12")
+Button/styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_cjd12")
+Button/styles/normal = SubResource("StyleBoxFlat_cjd12")
+Button/styles/normal_mirrored = SubResource("StyleBoxFlat_cjd12")
+Button/styles/pressed = SubResource("StyleBoxFlat_cjd12")
+Button/styles/pressed_mirrored = SubResource("StyleBoxFlat_cjd12")
+Panel/styles/panel = SubResource("StyleBoxFlat_50t0y")
+RichTextLabel/colors/default_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+RichTextLabel/fonts/normal_font = ExtResource("1_cjd12")

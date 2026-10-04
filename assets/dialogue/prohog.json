@@ -4,7 +4,8 @@
 		{
 			"type":"narrator",
 			"text":[
-				"After celebrating your ill-earned victory of an absolute beatdown of a golf toddler, you saw the veteran groundhog who frequents this course. If you want the attention of the VoleIPs, you need to win against an appropriate challenger."
+				"After celebrating your ill-earned victory of an absolute beatdown of a golf toddler, you saw the veteran groundhog who frequents this course.",
+				"If you want the attention of the VoleIPs, you need to win against an appropriate challenger."
 			]
 		},
 		{"type":"opponent_portrait", "expression":"default"},

@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://d3p7awstojlyc" path="res://scenes/game_camera.tscn" id="1_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://bjeuxns80ro51" path="res://scenes/golf_ball.tscn" id="2_xbj8l"]
 [ext_resource type="PackedScene" uid="uid://c28ksxkp4mhey" path="res://scenes/wind_controller.tscn" id="4_rbsrl"]
+[ext_resource type="PackedScene" uid="uid://c4rglsbhdpqbq" path="res://scenes/ui/hp_bars.tscn" id="6_3clis"]
 [ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
@@ -92,6 +93,9 @@ monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1218967782]
 shape = SubResource("WorldBoundaryShape3D_2j3k6")
+
+[node name="HPBars" parent="." unique_id=1232964483 instance=ExtResource("6_3clis")]
+z_index = 1
 
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
 [connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]

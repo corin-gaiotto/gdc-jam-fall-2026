@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://c3mrc4jn572is"]
+[gd_scene format=3 uid="uid://eq0fg47wplxi"]
 
 [ext_resource type="MeshLibrary" uid="uid://dhpmja7p5e7fa" path="res://resources/mesh/default_mesh_library.tres" id="1_nkuqb"]
 [ext_resource type="Script" uid="uid://dgp82b0a4emeg" path="res://scripts/golf_map.gd" id="2_30uh1"]

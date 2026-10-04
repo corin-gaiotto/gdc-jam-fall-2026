@@ -3,7 +3,7 @@ extends Control
 class_name DialoguePortrait
 
 @onready var portrait_texture_rect = $TextureRect
-@onready var portrait_name_label = $RichTextLabel
+@onready var portrait_name_label = $Panel/RichTextLabel
 
 @export var portrait_data: Dictionary[String, PortraitData]
 

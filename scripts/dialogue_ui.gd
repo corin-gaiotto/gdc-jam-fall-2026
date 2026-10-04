@@ -112,6 +112,9 @@ func run_command(command: Dictionary, opponent_name: String):
 					golf_game_manager.embarrassment += command["options"][result]["embarrassment_change"]
 					golf_game_manager.suspicion += command["options"][result]["suspicion_change"]
 					
+					if command["options"][result]["stat"] == "greed":
+						golf_game_manager.beetroots -= 1
+					
 					golf_game_manager.embarrassment = clamp(golf_game_manager.embarrassment, 0, golf_game_manager.max_embarrassment)
 					golf_game_manager.suspicion = clamp(golf_game_manager.suspicion, 0, golf_game_manager.max_suspicion)
 					
@@ -124,8 +127,12 @@ func run_command(command: Dictionary, opponent_name: String):
 
 
 func _on_option_1_pressed() -> void:
-	timing_result = 0
-	timed_options_done.emit()
+	if golf_game_manager.beetroots > 0:
+		timing_result = 0
+		timed_options_done.emit()
+	else:
+		if dialogue_option_buttons[0].text:
+			dialogue_option_buttons[0].text = "Not enough beetroots!"
 
 
 func _on_option_2_pressed() -> void:

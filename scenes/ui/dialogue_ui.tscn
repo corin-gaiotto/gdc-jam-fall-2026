@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bilvsbbgmcuei"]
 
+[ext_resource type="Theme" uid="uid://bqpaxtpbevjpb" path="res://scenes/ui/main_ui_theme.tres" id="1_awmck"]
 [ext_resource type="PackedScene" uid="uid://d3j7uuxtbf4on" path="res://scenes/ui/dialogue_portrait.tscn" id="1_sd0pw"]
 [ext_resource type="Script" uid="uid://dqmqq006dt05e" path="res://scripts/dialogue_ui.gd" id="1_ysedr"]
 [ext_resource type="PackedScene" uid="uid://dl3ikunk3mgt7" path="res://scenes/ui/dialogue_box.tscn" id="2_ysedr"]
@@ -10,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_awmck")
 color = Color(0, 0, 0, 0.3137255)
 script = ExtResource("1_ysedr")
 
@@ -63,14 +65,17 @@ layout_mode = 2
 [node name="Option1" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=635322184]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 
 [node name="Option2" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1853770600]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 
 [node name="Option3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=338036575]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Option1" to="." method="_on_option_1_pressed"]
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/Option2" to="." method="_on_option_2_pressed"]

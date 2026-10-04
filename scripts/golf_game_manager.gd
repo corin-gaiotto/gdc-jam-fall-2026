@@ -4,9 +4,14 @@ class_name GolfGameManager
 
 var suspicion: int = 0
 var embarrassment: int = 0
+var beetroots: int = 0
 
 var max_suspicion: int = 20
 var max_embarrassment: int = 20
+
+@onready var suspicion_bar = $HPBars/VBoxContainer/Panel/HBoxContainer/MarginContainer/SuspicionBar
+@onready var embarrassment_bar = $HPBars/VBoxContainer/Panel2/HBoxContainer/MarginContainer/EmbarrassmentBar
+@onready var beetroot_display = $HPBars/BeetrootPanel/HBoxContainer/RichTextLabel
 
 ## TODO: add support for switching maps
 
@@ -58,10 +63,12 @@ var max_embarrassment: int = 20
 	}
 ]
 
-var opponent_index: int = 1
+var opponent_index: int = 0
 var opponent_map_index: int = 0
 
 func _ready():
+	suspicion_bar.max_value = max_suspicion
+	embarrassment_bar.max_value = max_embarrassment
 	$DialogueUI.golf_game_manager = self
 	$DialogueUI.hide()
 	$GolfBall.check_if_caught.connect(check_if_caught)
@@ -71,6 +78,11 @@ func _ready():
 	load_map()
 	
 	await play_tutorial()
+
+func _physics_process(delta: float) -> void:
+	beetroot_display.text = str(beetroots)
+	suspicion_bar.value = suspicion
+	embarrassment_bar.value = embarrassment
 
 func play_tutorial():
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
@@ -149,6 +161,7 @@ func _on_win_area_body_entered(body: Node3D) -> void:
 	if $GolfBall.cheated:
 		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		await check_if_caught()
+	beetroots += 1
 	await next_map()
 
 

@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bh1gfumhyjtey" path="res://scripts/ray_cast_3d.gd" id="2_s1xsf"]
 [ext_resource type="Texture2D" uid="uid://cgnlh2cqrho1p" path="res://assets/art/ui/icons/icon_fan.png" id="3_70p3a"]
 [ext_resource type="Script" uid="uid://bgfq3c7w6qeyj" path="res://scripts/cheat_button.gd" id="3_lsbob"]
+[ext_resource type="Theme" uid="uid://4xopfyxrvjuo" path="res://scenes/ui/cheat_icon_theme.tres" id="3_tjkbo"]
 [ext_resource type="Texture2D" uid="uid://dr37xo86i3eik" path="res://assets/art/ui/icons/icon_ball.png" id="4_2nwmu"]
 [ext_resource type="Texture2D" uid="uid://kbwrracy24gp" path="res://assets/art/ui/icons/icon_mole.png" id="5_baqnq"]
 [ext_resource type="Texture2D" uid="uid://inlpa2a5rvt2" path="res://assets/art/ui/icons/icon_tilt.png" id="6_phv0k"]
@@ -112,9 +113,10 @@ offset_right = 160.0
 offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("3_tjkbo")
 
 [node name="WindCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=1825220289]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.78431374)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 anchor_left = 0.5
@@ -139,7 +141,7 @@ texture = ExtResource("3_70p3a")
 expand_mode = 1
 
 [node name="BallCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=618921465]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.78431374)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 anchor_left = 0.5
@@ -164,7 +166,7 @@ texture = ExtResource("4_2nwmu")
 expand_mode = 1
 
 [node name="MoleCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=382854994]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.78431374)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 anchor_left = 0.5
@@ -188,7 +190,7 @@ texture = ExtResource("5_baqnq")
 expand_mode = 1
 
 [node name="TiltCheat" type="Button" parent="CanvasLayer/CheatMenu" unique_id=1727006617]
-self_modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0.78431374)
 custom_minimum_size = Vector2(80, 80)
 layout_mode = 0
 anchor_left = 0.5
