@@ -260,6 +260,36 @@ fill_mode = 3
 [node name="BallHit" type="AudioStreamPlayer3D" parent="." unique_id=229963213]
 stream = ExtResource("10_1y7y6")
 
+[node name="DirectionHints" type="Node3D" parent="." unique_id=1382001919]
+
+[node name="W" type="Label3D" parent="DirectionHints" unique_id=1081562836]
+billboard = 1
+no_depth_test = true
+text = "W"
+font = ExtResource("9_47x5i")
+font_size = 72
+
+[node name="A" type="Label3D" parent="DirectionHints" unique_id=1462384727]
+billboard = 1
+no_depth_test = true
+text = "A"
+font = ExtResource("9_47x5i")
+font_size = 72
+
+[node name="S" type="Label3D" parent="DirectionHints" unique_id=1414402394]
+billboard = 1
+no_depth_test = true
+text = "S"
+font = ExtResource("9_47x5i")
+font_size = 72
+
+[node name="D" type="Label3D" parent="DirectionHints" unique_id=1580749135]
+billboard = 1
+no_depth_test = true
+text = "D"
+font = ExtResource("9_47x5i")
+font_size = 72
+
 [connection signal="pressed" from="CanvasLayer/CheatMenu/WindCheat" to="." method="_on_wind_cheat_pressed"]
 [connection signal="pressed" from="CanvasLayer/CheatMenu/BallCheat" to="." method="_on_ball_cheat_pressed"]
 [connection signal="pressed" from="CanvasLayer/CheatMenu/MoleCheat" to="." method="_on_mole_cheat_pressed"]

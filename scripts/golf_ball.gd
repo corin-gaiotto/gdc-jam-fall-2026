@@ -130,29 +130,38 @@ func _physics_process(delta: float) -> void:
 					$CanvasLayer/PowerBar.hide()
 				CHEATS.MOLE:
 					hide_aiming()
+					$DirectionHints.show()
 					$CanvasLayer/CheatMenu.hide()
 					$CanvasLayer/PowerBar.hide()
 					var hole_pos = gridmap.get_hole_position()
+					$DirectionHints/W.global_position = gridmap.map_to_local(hole_pos + Vector3i(0, 1, -1))
+					$DirectionHints/A.global_position = gridmap.map_to_local(hole_pos + Vector3i(-1, 1, 0))
+					$DirectionHints/S.global_position = gridmap.map_to_local(hole_pos + Vector3i(0, 1, 1))
+					$DirectionHints/D.global_position = gridmap.map_to_local(hole_pos + Vector3i(1, 1, 0))
 					if Input.is_action_just_pressed("ball_angle_down"):
 						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(0, 0, 1)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(0, 0, 1))]
 						gridmap.set_cell_item(hole_pos + Vector3i(0, 0, 1), 6, 0)
 						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
 						set_cheated()
+						$DirectionHints.hide()
 					elif Input.is_action_just_pressed("ball_angle_up"):
 						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(0, 0, -1)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(0, 0, -1))]
 						gridmap.set_cell_item(hole_pos + Vector3i(0, 0, -1), 6, 0)
 						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
 						set_cheated()
+						$DirectionHints.hide()
 					elif Input.is_action_just_pressed("ball_angle_left"):
 						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(-1, 0, 0)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(-1, 0, 0))]
 						gridmap.set_cell_item(hole_pos + Vector3i(-1, 0, 0), 6, 0)
 						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
 						set_cheated()
+						$DirectionHints.hide()
 					elif Input.is_action_just_pressed("ball_angle_right"):
 						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(1, 0, 0)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(1, 0, 0))]
 						gridmap.set_cell_item(hole_pos + Vector3i(1, 0, 0), 6, 0)
 						gridmap.set_cell_item(hole_pos, temp[0], temp[1])
 						set_cheated()
+						$DirectionHints.hide()
 				CHEATS.TILT:
 					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
@@ -162,11 +171,13 @@ func _physics_process(delta: float) -> void:
 					if Input.is_action_just_pressed("cheat_confirm"):
 						set_cheated()
 		BALL_STATE.IN_MOTION:
+			$DirectionHints.hide()
 			$CanvasLayer/CheatMenu.hide()
 			$CanvasLayer/PowerBar.hide()
 			hide_aiming()
 			check_resting()
 		BALL_STATE.RESTING:
+			$DirectionHints.hide()
 			$CanvasLayer/CheatMenu.hide()
 			$CanvasLayer/PowerBar.hide()
 			hide_aiming()
@@ -187,6 +198,7 @@ func _physics_process(delta: float) -> void:
 		BALL_STATE.HAZARD:
 			$CanvasLayer/CheatMenu.hide()
 			$CanvasLayer/PowerBar.hide()
+			$DirectionHints.hide()
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
@@ -206,6 +218,7 @@ func _physics_process(delta: float) -> void:
 			hazard_frames += 1
 		BALL_STATE.DIALOGUE:
 			hide()
+			$DirectionHints.hide()
 			$CanvasLayer/PowerBar.hide()
 			$CanvasLayer/CheatMenu.hide()
 			linear_velocity = Vector3.ZERO
