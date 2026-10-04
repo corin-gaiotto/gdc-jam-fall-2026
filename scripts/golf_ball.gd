@@ -69,25 +69,26 @@ func get_mouse_properties():
 	
 
 func _physics_process(delta: float) -> void:
-	if is_grounded():
-		var hit_point = $RayCast3D.get_collision_point()
-		var current_distance = global_position.distance_to(hit_point)
-		
-		# Calculate spring compression force
-		var distance_error = 0.13 - current_distance
-		if distance_error > 0:
-			var normal = $RayCast3D.get_collision_normal()
-			var vertical_velocity = linear_velocity.dot(normal)
+	if state != BALL_STATE.DIALOGUE:
+		if is_grounded():
+			var hit_point = $RayCast3D.get_collision_point()
+			var current_distance = global_position.distance_to(hit_point)
 			
-			var spring_force = (distance_error * 500) - (vertical_velocity * 30)
-			apply_force(normal * max(0.0, spring_force))
-		apply_ground_properties()
-	else:
-		linear_damp = 0
-		angular_damp = 0
-		
-		# wind
-		apply_central_force(Vector3(cos(wind_controller.wind_direction), 0, sin(wind_controller.wind_direction)) * wind_controller.wind_strength * delta)
+			# Calculate spring compression force
+			var distance_error = 0.13 - current_distance
+			if distance_error > 0:
+				var normal = $RayCast3D.get_collision_normal()
+				var vertical_velocity = linear_velocity.dot(normal)
+				
+				var spring_force = (distance_error * 500) - (vertical_velocity * 30)
+				apply_force(normal * max(0.0, spring_force))
+			apply_ground_properties()
+		else:
+			linear_damp = 0
+			angular_damp = 0
+			
+			# wind
+			apply_central_force(Vector3(cos(wind_controller.wind_direction), 0, sin(wind_controller.wind_direction)) * wind_controller.wind_strength * delta)
 	match state:
 		BALL_STATE.AIMABLE:
 			if $RayCast3D.is_colliding():

@@ -44,6 +44,8 @@ particles_anim_loop = false
 material = SubResource("StandardMaterial3D_i1d0b")
 size = Vector2(0.2, 0.2)
 
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2j3k6"]
+
 [node name="Golfing" type="Node3D" unique_id=2049913240]
 script = ExtResource("1_luvbl")
 
@@ -83,4 +85,13 @@ explosiveness = 0.75
 process_material = SubResource("ParticleProcessMaterial_2j3k6")
 draw_pass_1 = SubResource("QuadMesh_3ysr2")
 
+[node name="DeathBarrier" type="Area3D" parent="." unique_id=1818292443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DeathBarrier" unique_id=1218967782]
+shape = SubResource("WorldBoundaryShape3D_2j3k6")
+
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
+[connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]

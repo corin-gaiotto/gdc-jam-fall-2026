@@ -21,9 +21,9 @@ var max_embarrassment: int = 20
 		},
 		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/chippy.json"),
 		"maps": [
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn"),
-			preload("res://scenes/golfMaps/test_golf_map.tscn")
+			preload("res://scenes/golfMaps/golf_map1.tscn"),
+			preload("res://scenes/golfMaps/golf_map2.tscn"),
+			preload("res://scenes/golfMaps/golf_map3.tscn")
 		]
 	},
 	{
@@ -59,7 +59,7 @@ var max_embarrassment: int = 20
 ]
 
 var opponent_index: int = 0
-var opponent_map_index: int = 0
+var opponent_map_index: int = 1
 
 func _ready():
 	$DialogueUI.golf_game_manager = self
@@ -84,6 +84,8 @@ func play_tutorial():
 	$DialogueUI.hide()
 
 func load_map():
+	if $GolfBall.gridmap:
+		$GolfBall.gridmap.queue_free()
 	var map: GolfMap = opponents[opponent_index]["maps"][opponent_map_index].instantiate()
 	add_child(map)
 	$GolfBall.gridmap = map
@@ -148,3 +150,9 @@ func _on_win_area_body_entered(body: Node3D) -> void:
 		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		await check_if_caught()
 	await next_map()
+
+
+func _on_death_barrier_body_entered(body: Node3D) -> void:
+	$GolfBall.hazard_frames = 0
+	$GolfBall.state = GolfBall.BALL_STATE.HAZARD
+	$GolfBall.hide()
