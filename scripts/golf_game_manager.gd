@@ -98,10 +98,15 @@ func _physics_process(delta: float) -> void:
 		
 		$WinArea.position = $GolfBall.gridmap.map_to_local(hole_coords)
 	
+	if $GolfBall.gridmap:
+		$ParCount/RichTextLabel.text = "Par: %d/%d" % [$GolfBall.stroke_count, $GolfBall.gridmap.par_count]
+	
 	if $GolfBall.state == GolfBall.BALL_STATE.AIMABLE:
 		$ZoomReminder.show()
+		$ParCount.show()
 	else:
 		$ZoomReminder.hide()
+		$ParCount.hide()
 	
 	if $GolfBall.state == GolfBall.BALL_STATE.RESTING:
 		check_loss()
