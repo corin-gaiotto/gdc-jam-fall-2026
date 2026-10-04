@@ -3,7 +3,7 @@ extends Node3D
 class_name GolfGameManager
 
 var suspicion: int = 0
-var embarrassment: int = 0
+var embarrassment: int = 19
 var beetroots: int = 0
 
 var max_suspicion: int = 20
@@ -74,6 +74,7 @@ func _ready():
 	embarrassment_bar.max_value = max_embarrassment
 	$DialogueUI.golf_game_manager = self
 	$DialogueUI.hide()
+	$GolfBall.check_par_count.connect(check_par_count)
 	$GolfBall.check_if_caught.connect(check_if_caught)
 
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
@@ -122,7 +123,7 @@ func load_map():
 	var map: GolfMap = opponents[opponent_index]["maps"][opponent_map_index].instantiate()
 	add_child(map)
 	$GolfBall.gridmap = map
-	
+	$GolfBall.stroke_count = 0
 	# place ball at position of gridmap marker
 	$GolfBall.position = map.get_node("SpawnPoint").position
 	$GolfBall.show()
@@ -154,6 +155,11 @@ func check_loss():
 		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		await $Cutscene.play_cutscene("embarrass")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+func check_par_count():
+	if $GolfBall.stroke_count > $GolfBall.gridmap.par_count:
+		embarrassment += 1
+		check_loss()
 
 func check_if_caught():
 	# add suspicion based on perception regardless

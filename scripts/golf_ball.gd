@@ -5,6 +5,7 @@ class_name GolfBall
 var camera_rotation: Vector3 = Vector3(deg_to_rad(-30), deg_to_rad(45), 0)
 
 signal check_if_caught
+signal check_par_count
 
 @onready var aim_visuals = [$RayCast3D/AimVisual1, $RayCast3D/AimVisual2, $RayCast3D/AimVisual3]
 @onready var aim_shadows = [$RayCast3D/AimShadow1, $RayCast3D/AimShadow2, $RayCast3D/AimShadow3]
@@ -176,6 +177,8 @@ func _physics_process(delta: float) -> void:
 			gridmap.rotation = Vector3(0, 0, 0)
 			gravity_scale = 1.0
 			
+			check_par_count.emit()
+			
 			## run the roll for if you're caught cheating here
 			if cheated:
 				check_if_caught.emit()
@@ -294,6 +297,9 @@ func launching_controls():
 			sin(ball_yaw) * cos(ball_pitch) * launch_strength * launch_percent
 			))
 		stroke_count += 1
+		
+		
+		
 		state = BALL_STATE.IN_MOTION
 		resting_frames = 0
 		launching = false

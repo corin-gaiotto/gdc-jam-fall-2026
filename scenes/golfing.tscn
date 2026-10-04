@@ -381,6 +381,7 @@ transform = Transform3D(0.8660253, -0.48296288, 0.12940954, 0, 0.25881904, 0.965
 
 [node name="Camera3D" parent="." unique_id=2039474309 node_paths=PackedStringArray("tracking_ball") instance=ExtResource("1_rbsrl")]
 transform = Transform3D(0.7071067, -0.3535534, 0.61237234, 0, 0.8660254, 0.5, -0.7071067, -0.3535534, 0.61237234, 1, 2, 1)
+current = true
 tracking_ball = NodePath("../GolfBall")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=171808503]
@@ -407,7 +408,7 @@ shape = SubResource("CylinderShape3D_3ysr2")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="WinArea" unique_id=1385140118]
 emitting = false
-amount = 128
+amount = 64
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.75
