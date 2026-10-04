@@ -42,7 +42,7 @@
 						"text":" \"...\" (Dangles beetroot in front of her eyes) ",
 						"stat":"greed",
 						"embarrassment_change":-1,
-						"suspicion_change":-1,
+						"suspicion_change":-2,
 						"result_success":[
 							{"type":"player_portrait", "expression":"beetroot"},
 							{"type":"opponent_portrait", "expression":"greed"},
