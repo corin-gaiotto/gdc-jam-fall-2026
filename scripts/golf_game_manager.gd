@@ -72,7 +72,11 @@ func _ready():
 	$DialogueUI.golf_game_manager = self
 	$DialogueUI.hide()
 	$GolfBall.check_if_caught.connect(check_if_caught)
-	
+
+	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
+	$GolfBall.hide()
+	await $Cutscene.play_cutscene()
+
 	await introduce_opponent()
 	
 	load_map()

@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4rglsbhdpqbq" path="res://scenes/ui/hp_bars.tscn" id="6_3clis"]
 [ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
 [ext_resource type="Theme" uid="uid://bqpaxtpbevjpb" path="res://scenes/ui/main_ui_theme.tres" id="7_3clis"]
+[ext_resource type="PackedScene" uid="uid://uddo8se6exop" path="res://scenes/cutscene.tscn" id="8_cutsc"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
 background_mode = 2
@@ -69,6 +70,8 @@ wind_controller = NodePath("../WindController")
 transform = Transform3D(1, -2.9802322e-08, 0, 0, 1, 0, 0, -2.9802322e-08, 1, 5.9604645e-08, 0, 5.9604645e-08)
 
 [node name="DialogueUI" parent="." unique_id=92798159 instance=ExtResource("6_h8u8v")]
+
+[node name="Cutscene" parent="." unique_id=3104729981 instance=ExtResource("8_cutsc")]
 
 [node name="WinArea" type="Area3D" parent="." unique_id=785506052]
 collision_mask = 4

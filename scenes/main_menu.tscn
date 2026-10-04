@@ -1,0 +1,105 @@
+[gd_scene format=3 uid="uid://b6ynhi6abv33f"]
+
+[ext_resource type="Script" uid="uid://bv6mq36abccje" path="res://scripts/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="Texture2D" uid="uid://cifykcn05gcx6" path="res://assets/art/menu/menu_bg.PNG" id="2_oa1go"]
+[ext_resource type="Texture2D" uid="uid://d0337bo1qdqom" path="res://assets/art/menu/menu_settings.PNG" id="3_tbmy8"]
+[ext_resource type="Texture2D" uid="uid://cdt1ln64571a6" path="res://assets/art/menu/menu_settings_hover.PNG" id="4_jk1qb"]
+[ext_resource type="Theme" uid="uid://bqpaxtpbevjpb" path="res://scenes/ui/main_ui_theme.tres" id="5_5dd4i"]
+[ext_resource type="FontFile" uid="uid://e3lfq17xn8je" path="res://scenes/ui/Fredoka-SemiBold.ttf" id="6_lgwnu"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_uhagc"]
+load_path = "res://.godot/imported/menu_start.PNG-53b41c1ad5922ace6b75f9451338cb2f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_btxxm"]
+load_path = "res://.godot/imported/menu_start_hover.PNG-5c00cf2c7e4928bd71bdc1c5a08030bd.ctex"
+
+[sub_resource type="LabelSettings" id="LabelSettings_885r8"]
+font_size = 120
+font_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+
+[node name="MainMenu" type="Node2D" unique_id=1192155667]
+script = ExtResource("1_rtw2f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1866788362]
+offset_right = 1920.0
+offset_bottom = 1080.0
+texture = ExtResource("2_oa1go")
+expand_mode = 3
+
+[node name="Control" type="Control" parent="TextureRect" unique_id=1542753575]
+anchors_preset = 0
+offset_left = 364.0
+offset_top = 253.0
+offset_right = 1555.0
+offset_bottom = 909.0
+
+[node name="settings" type="TextureButton" parent="TextureRect/Control" unique_id=28970059]
+visible = false
+layout_mode = 0
+offset_left = -2.0
+offset_right = 1918.0
+offset_bottom = 1080.0
+action_mode = 0
+texture_normal = ExtResource("3_tbmy8")
+texture_pressed = ExtResource("4_jk1qb")
+texture_hover = ExtResource("4_jk1qb")
+
+[node name="play" type="TextureButton" parent="TextureRect/Control" unique_id=406783395]
+layout_mode = 0
+offset_left = -353.0
+offset_top = -253.0
+offset_right = 1567.0
+offset_bottom = 827.0
+texture_normal = SubResource("CompressedTexture2D_uhagc")
+texture_pressed = SubResource("CompressedTexture2D_btxxm")
+texture_hover = SubResource("CompressedTexture2D_btxxm")
+stretch_mode = 0
+
+[node name="settings_menu" type="PanelContainer" parent="TextureRect" unique_id=1587103757]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -255.5
+offset_top = -251.0
+offset_right = 255.5
+offset_bottom = 251.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_5dd4i")
+
+[node name="Panel" type="Panel" parent="TextureRect/settings_menu" unique_id=1599853042]
+layout_mode = 2
+
+[node name="items" type="VBoxContainer" parent="TextureRect/settings_menu/Panel" unique_id=850702616]
+layout_mode = 0
+offset_right = 511.0
+offset_bottom = 502.0
+theme = ExtResource("5_5dd4i")
+
+[node name="Label" type="Label" parent="TextureRect/settings_menu/Panel/items" unique_id=1533079600]
+layout_mode = 2
+theme = ExtResource("5_5dd4i")
+theme_override_fonts/font = ExtResource("6_lgwnu")
+theme_override_font_sizes/font_size = 120
+text = "Settings"
+label_settings = SubResource("LabelSettings_885r8")
+horizontal_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="TextureRect/settings_menu/Panel/items" unique_id=1728042779]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+max_value = 50.0
+
+[node name="Button" type="Button" parent="TextureRect/settings_menu/Panel/items" unique_id=1710494571]
+custom_minimum_size = Vector2(200, 120)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Back"
+
+[connection signal="pressed" from="TextureRect/Control/settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="TextureRect/Control/play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="TextureRect/settings_menu/Panel/items/Button" to="." method="_on_button_pressed"]
