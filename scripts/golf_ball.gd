@@ -47,7 +47,7 @@ const ball_max_pitch: float = PI/2
 
 const ball_change_step: float = PI/72
 
-const ball_change_max_cd: int = 6 # number of frames before another movement is registered
+const ball_change_max_cd: int = 2 # number of frames before another movement is registered
 var ball_yaw_change_cd: int = 0
 var ball_pitch_change_cd: int = 0
 
