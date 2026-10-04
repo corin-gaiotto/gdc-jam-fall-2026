@@ -136,9 +136,15 @@ func introduce_opponent():
 
 func check_loss():
 	if suspicion >= max_suspicion:
+		$GolfBall.hide()
+		$GolfBall/CanvasLayer/CheatMenu.hide()
+		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		await $Cutscene.play_cutscene("sus")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	elif embarrassment >= max_embarrassment:
+		$GolfBall.hide()
+		$GolfBall/CanvasLayer/CheatMenu.hide()
+		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		await $Cutscene.play_cutscene("embarrass")
 		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
