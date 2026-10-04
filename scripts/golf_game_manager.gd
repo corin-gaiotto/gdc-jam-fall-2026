@@ -92,6 +92,9 @@ func _physics_process(delta: float) -> void:
 		$ZoomReminder.show()
 	else:
 		$ZoomReminder.hide()
+	
+	if $GolfBall.state == GolfBall.BALL_STATE.RESTING:
+		check_loss()
 
 func play_tutorial():
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
@@ -130,6 +133,14 @@ func introduce_opponent():
 	$GolfBall.state = GolfBall.BALL_STATE.RESTING
 	$GolfBall.show()
 	$DialogueUI.hide()
+
+func check_loss():
+	if suspicion >= max_suspicion:
+		await $Cutscene.play_cutscene("sus")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	elif embarrassment >= max_embarrassment:
+		await $Cutscene.play_cutscene("embarrass")
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 
 func check_if_caught():
 	# add suspicion based on perception regardless
