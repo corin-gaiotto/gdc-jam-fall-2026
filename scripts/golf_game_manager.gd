@@ -69,6 +69,19 @@ func _ready():
 	await introduce_opponent()
 	
 	load_map()
+	
+	await play_tutorial()
+
+func play_tutorial():
+	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
+	
+	$DialogueUI.show()
+	await $DialogueUI.play_dialogue($DialogueUI.read_dialogue_file("res://assets/dialogue/mole_tutorial.json"), "mole")
+	
+	$GolfBall.cheated = false
+	$GolfBall.state = GolfBall.BALL_STATE.RESTING
+	$GolfBall.show()
+	$DialogueUI.hide()
 
 func load_map():
 	var map: GolfMap = opponents[opponent_index]["maps"][opponent_map_index].instantiate()

@@ -1,0 +1,68 @@
+[
+	{"type":"player_portrait", "expression":"default"},
+	{"type":"opponent_portrait", "expression":"mole"},
+	{
+		"type":"opponent",
+		"text":[
+			"Hey! Heard you're trying to get into that free food club! You won't leave your old friend out of the matter, right?",
+			"I'll make it worthwhile for you! Here's some gadgets I've been tinkering with...",
+			"Use WASD or the arrow keys to line up your shot, and then hit Space to start charging it! Hit it again to shoot; the strength'll depend on the Power Bar!",
+			"Try to get the ball in the hole in as few shots as possible!",
+			"Of course, you won’t be on your own: I’ve got four different gadgets here that’ll help you cheat your way through it!"
+		]
+	},
+	{"type":"opponent_portrait", "expression":"fan_cheat"},
+	{
+		"type":"opponent",
+		"text":[
+			"The first is a giant fan. I set this baby up offsides, you tell me the direction, and I'll change the wind speed for ya!"
+		]
+	},
+	{"type":"opponent_portrait", "expression":"tilt_cheat"},
+	{
+		"type":"opponent",
+		"text":[
+			"Next up we have the Tilter. Turns out, this course is built on unstable ground, so I set up some car jacks under the course to tilt the entire thing! Just tell me which direction you want to tilt."
+		]
+	},
+	{"type":"opponent_portrait", "expression":"ball_cheat"},
+	{
+		"type":"opponent",
+		"text":[
+			"The third trick is an old favourite of mine, the feather ball! Deceptively light, and looks no different! This'll fly much higher and fall slower when you hit it."
+		]
+	},
+	{"type":"opponent_portrait", "expression":"mole_cheat"},
+	{
+		"type":"opponent",
+		"text":[
+			"Finally, if all else fails, just give me a call and I can do some digging and... reroute the goal to an adjacent tile."
+		]
+	},
+	{"type":"opponent_portrait", "expression":"mole"},
+	{
+		"type":"opponent",
+		"text":[
+			"Just remember, you might run into some troubles if you get caught! You'll have to talk your way through... Since I'm also a dating sim master (and a master stalker), I'll teach you the basics!",
+			"You have to watch out for two things out here, your suspicion and your embarrassment.",
+			"Your suspicion is how close the golfers here are to finding out our plan. If it gets too high, we're busted! Try to lower it by flattering your opponent.",
+			"Your embarrassment directly affects your social status! Let it get too high, and you'll be kicked out for sure. Whenever you go over par, it’ll start rising! Try to lower it by standing your ground.",
+			"Another thing - some of the golfers here LOVE beetroots. You'll get one for every hole you clear, so why not give a few out as bribes- I mean, gifts? That'll definitely help your case.",
+			"I probably shouldn't have to tell you this, but every opponent is different; vary your tactics and try to figure out their weaknesses!"
+		]
+	},
+	{"type":"player_portrait", "expression":"default_talk"},
+	{
+		"type":"player",
+		"text":[
+			"Thanks, Mole."
+		]
+	},
+	{"type":"player_portrait", "expression":"default"},
+	{
+		"type":"opponent",
+		"text":[
+			"No need to thank me, heh, my wins are your wins after all (hope the opposite is true too)..."
+		]
+	},
+]
