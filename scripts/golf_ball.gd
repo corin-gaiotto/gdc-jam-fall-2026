@@ -102,16 +102,22 @@ func _physics_process(delta: float) -> void:
 				CHEATS.NONE:
 					if cheated:
 						$CanvasLayer/CheatMenu.hide()
+						$CanvasLayer/PowerBar.hide()
 					else:
 						$CanvasLayer/CheatMenu.show()
+						$CanvasLayer/PowerBar.hide()
 					if launching:
+						$CanvasLayer/PowerBar.value = launch_percent
 						launching_controls()
+						$CanvasLayer/PowerBar.show()
 					else:
 						aiming_controls()
+						$CanvasLayer/PowerBar.hide()
 					draw_aiming()
 				CHEATS.WIND:
 					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
+					$CanvasLayer/PowerBar.hide()
 					get_mouse_properties()
 					wind_controller.wind_direction = mouse_direction
 					wind_controller.wind_strength = clampf(mouse_strength, 0, 300)
@@ -120,9 +126,11 @@ func _physics_process(delta: float) -> void:
 				CHEATS.BALL:
 					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
+					$CanvasLayer/PowerBar.hide()
 				CHEATS.MOLE:
 					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
+					$CanvasLayer/PowerBar.hide()
 					var hole_pos = gridmap.get_hole_position()
 					if Input.is_action_just_pressed("ball_angle_down"):
 						var temp = [gridmap.get_cell_item(hole_pos + Vector3i(0, 0, 1)), gridmap.get_cell_item_orientation(hole_pos + Vector3i(0, 0, 1))]
@@ -147,16 +155,19 @@ func _physics_process(delta: float) -> void:
 				CHEATS.TILT:
 					hide_aiming()
 					$CanvasLayer/CheatMenu.hide()
+					$CanvasLayer/PowerBar.hide()
 					get_mouse_properties()
 					gridmap.rotation = Vector3(cos(mouse_direction) * deg_to_rad(2) * clampf(mouse_strength/300, 0, 1), 0, sin(mouse_direction) * deg_to_rad(2) * clampf(mouse_strength/300, 0, 1))
 					if Input.is_action_just_pressed("cheat_confirm"):
 						set_cheated()
 		BALL_STATE.IN_MOTION:
 			$CanvasLayer/CheatMenu.hide()
+			$CanvasLayer/PowerBar.hide()
 			hide_aiming()
 			check_resting()
 		BALL_STATE.RESTING:
 			$CanvasLayer/CheatMenu.hide()
+			$CanvasLayer/PowerBar.hide()
 			hide_aiming()
 			previous_position = global_position
 			
@@ -172,6 +183,7 @@ func _physics_process(delta: float) -> void:
 			cheated = false
 		BALL_STATE.HAZARD:
 			$CanvasLayer/CheatMenu.hide()
+			$CanvasLayer/PowerBar.hide()
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO
 			self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, true)
@@ -191,6 +203,7 @@ func _physics_process(delta: float) -> void:
 			hazard_frames += 1
 		BALL_STATE.DIALOGUE:
 			hide()
+			$CanvasLayer/PowerBar.hide()
 			$CanvasLayer/CheatMenu.hide()
 			linear_velocity = Vector3.ZERO
 			angular_velocity = Vector3.ZERO

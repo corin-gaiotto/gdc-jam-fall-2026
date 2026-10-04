@@ -104,6 +104,7 @@ func load_map():
 	
 	# place ball at position of gridmap marker
 	$GolfBall.position = map.get_node("SpawnPoint").position
+	$GolfBall.show()
 	
 	# find hole, and place win area in it
 	var hole_coords: Vector3i = map.get_hole_position()
@@ -157,10 +158,10 @@ func next_map():
 
 func _on_win_area_body_entered(body: Node3D) -> void:
 	$WinArea/GPUParticles3D.emitting = true
+	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 	await get_tree().create_timer(5.0).timeout
-	if $GolfBall.cheated:
-		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
-		await check_if_caught()
+	#if $GolfBall.cheated:
+	#	await check_if_caught()
 	beetroots += 1
 	await next_map()
 

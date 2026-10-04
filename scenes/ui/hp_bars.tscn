@@ -19,10 +19,19 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4c71p"]
 bg_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.44578487, 0.18031004, 0.19032124, 1)
 corner_radius_top_left = 16
 corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6cuxt"]
 bg_color = Color(0.39215687, 0.54509807, 0.49803922, 1)
@@ -67,9 +76,10 @@ expand_mode = 5
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
 
 [node name="SuspicionBar" type="ProgressBar" parent="VBoxContainer/Panel/HBoxContainer/MarginContainer" unique_id=903657248]
 layout_mode = 2
@@ -99,10 +109,10 @@ expand_mode = 5
 custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 12
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 16
 
 [node name="EmbarrassmentBar" type="ProgressBar" parent="VBoxContainer/Panel2/HBoxContainer/MarginContainer" unique_id=673782116]
 layout_mode = 2

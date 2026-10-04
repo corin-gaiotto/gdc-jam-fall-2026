@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dr37xo86i3eik" path="res://assets/art/ui/icons/icon_ball.png" id="4_2nwmu"]
 [ext_resource type="Texture2D" uid="uid://kbwrracy24gp" path="res://assets/art/ui/icons/icon_mole.png" id="5_baqnq"]
 [ext_resource type="Texture2D" uid="uid://inlpa2a5rvt2" path="res://assets/art/ui/icons/icon_tilt.png" id="6_phv0k"]
+[ext_resource type="FontFile" uid="uid://e3lfq17xn8je" path="res://scenes/ui/Fredoka-SemiBold.ttf" id="9_47x5i"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_furft"]
 friction = 0.0
@@ -60,6 +61,30 @@ material = SubResource("StandardMaterial3D_luvbl")
 top_radius = 0.063
 bottom_radius = 0.063
 height = 0.01
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tjkbo"]
+bg_color = Color(0.5921569, 0.25490198, 0.26666668, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 0.9647059, 0.91764706, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47x5i"]
+bg_color = Color(0.27285355, 0.097665705, 0.104509614, 1)
+border_color = Color(0.44578487, 0.18031004, 0.19032124, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="GolfBall" type="RigidBody3D" unique_id=1367131474]
 collision_layer = 5
@@ -214,6 +239,22 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_phv0k")
 expand_mode = 1
+
+[node name="PowerBar" type="ProgressBar" parent="CanvasLayer" unique_id=1439843356]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.575
+anchor_right = 0.5
+anchor_bottom = 0.575
+offset_left = -220.0
+offset_top = -200.0
+offset_right = -180.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("9_47x5i")
+theme_override_styles/background = SubResource("StyleBoxFlat_tjkbo")
+theme_override_styles/fill = SubResource("StyleBoxFlat_47x5i")
+max_value = 1.0
+fill_mode = 3
 
 [connection signal="pressed" from="CanvasLayer/CheatMenu/WindCheat" to="." method="_on_wind_cheat_pressed"]
 [connection signal="pressed" from="CanvasLayer/CheatMenu/BallCheat" to="." method="_on_ball_cheat_pressed"]
