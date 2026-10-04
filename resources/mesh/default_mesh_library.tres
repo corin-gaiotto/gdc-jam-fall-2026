@@ -10,6 +10,7 @@
 [ext_resource type="Shape3D" uid="uid://du83gxmtikinf" path="res://resources/mesh/ramp_corner_shape.tres" id="4_tsa13"]
 [ext_resource type="ArrayMesh" uid="uid://gpcm7182fwjv" path="res://resources/mesh/green_hole.tres" id="5_1gjbd"]
 [ext_resource type="ArrayMesh" uid="uid://2fn7uxfr0fsi" path="res://resources/mesh/glass.tres" id="5_tsa13"]
+[ext_resource type="BoxMesh" uid="uid://57aps8esud6h" path="res://resources/mesh/glassbox.tres" id="6_0wluq"]
 [ext_resource type="Shape3D" uid="uid://c77per6fsejmw" path="res://resources/mesh/hole_shape.tres" id="6_dju32"]
 [ext_resource type="PlaneMesh" uid="uid://biilvdc5ktf2k" path="res://resources/mesh/water_hazard.tres" id="7_0h656"]
 [ext_resource type="ArrayMesh" uid="uid://bxxr5rrbl6hlf" path="res://resources/mesh/rough_wall.tres" id="8_65xen"]
@@ -18,6 +19,8 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tsa13"]
 size = Vector3(1, 1, 0.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_34y50"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dju32"]
 
@@ -143,3 +146,10 @@ item/12/mesh_cast_shadow = 1
 item/12/shapes = [SubResource("BoxShape3D_tsa13"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
 item/12/navigation_mesh_transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 item/12/navigation_layers = 1
+item/13/name = "green_glassbox"
+item/13/mesh = ExtResource("6_0wluq")
+item/13/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/mesh_cast_shadow = 1
+item/13/shapes = [SubResource("BoxShape3D_34y50"), Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)]
+item/13/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/13/navigation_layers = 1

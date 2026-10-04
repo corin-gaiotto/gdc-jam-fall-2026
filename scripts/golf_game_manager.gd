@@ -66,6 +66,9 @@ var max_embarrassment: int = 20
 var opponent_index: int = 0
 var opponent_map_index: int = 0
 
+func play_current_ambient():
+	$MusicPlayer.play_song("opponent_%d" % (opponent_index + 1))
+
 func _ready():
 	suspicion_bar.max_value = max_suspicion
 	embarrassment_bar.max_value = max_embarrassment
@@ -87,6 +90,12 @@ func _physics_process(delta: float) -> void:
 	beetroot_display.text = str(beetroots)
 	suspicion_bar.value = suspicion
 	embarrassment_bar.value = embarrassment
+	
+	# find hole, and place win area in it
+	if $GolfBall.gridmap:
+		var hole_coords: Vector3i = $GolfBall.gridmap.get_hole_position()
+		
+		$WinArea.position = $GolfBall.gridmap.map_to_local(hole_coords)
 	
 	if $GolfBall.state == GolfBall.BALL_STATE.AIMABLE:
 		$ZoomReminder.show()
@@ -118,10 +127,7 @@ func load_map():
 	$GolfBall.position = map.get_node("SpawnPoint").position
 	$GolfBall.show()
 	
-	# find hole, and place win area in it
-	var hole_coords: Vector3i = map.get_hole_position()
 	
-	$WinArea.position = map.map_to_local(hole_coords)
 
 func introduce_opponent():
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
@@ -129,6 +135,7 @@ func introduce_opponent():
 	$DialogueUI.show()
 	await $DialogueUI.play_dialogue(opponents[opponent_index]["dialogue_data"]["intro"], opponents[opponent_index]["name"])
 	
+	play_current_ambient()
 	$GolfBall.cheated = false
 	$GolfBall.state = GolfBall.BALL_STATE.RESTING
 	$GolfBall.show()
@@ -154,12 +161,14 @@ func check_if_caught():
 	var chance = opponents[opponent_index]["stats"]["perception"]/3.0
 	if randf() < chance:
 		print("caught")
+		$MusicPlayer.play_song("challenge")
 		# caught! freeze player, start dialogue, etc.
 		$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 		
 		$DialogueUI.show()
 		await $DialogueUI.play_dialogue(opponents[opponent_index]["dialogue_data"]["cheat_noticed"].pick_random(), opponents[opponent_index]["name"])
 		
+		play_current_ambient()
 		$GolfBall.cheated = false
 		$GolfBall.state = GolfBall.BALL_STATE.RESTING
 		$GolfBall.show()
