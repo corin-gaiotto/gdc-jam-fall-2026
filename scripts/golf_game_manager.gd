@@ -42,8 +42,8 @@ var max_embarrassment: int = 20
 		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/prohog.json"),
 		"maps": [
 			preload("res://scenes/golfMaps/golf_map4.tscn"),
-			preload("res://scenes/golfMaps/golf_map3.tscn"),
-			preload("res://scenes/golfMaps/golf_map3.tscn")
+			preload("res://scenes/golfMaps/golf_map5.tscn"),
+			preload("res://scenes/golfMaps/golf_map6.tscn")
 		]
 	},
 	{
@@ -56,9 +56,9 @@ var max_embarrassment: int = 20
 		},
 		"dialogue_data": $DialogueUI.read_dialogue_file("res://assets/dialogue/voleip.json"),
 		"maps": [
-			preload("res://scenes/golfMaps/golf_map3.tscn"),
-			preload("res://scenes/golfMaps/golf_map3.tscn"),
-			preload("res://scenes/golfMaps/golf_map3.tscn")
+			preload("res://scenes/golfMaps/golf_map7.tscn"),
+			preload("res://scenes/golfMaps/golf_map8.tscn"),
+			preload("res://scenes/golfMaps/golf_map9.tscn")
 		]
 	}
 ]
