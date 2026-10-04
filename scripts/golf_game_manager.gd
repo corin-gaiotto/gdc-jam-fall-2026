@@ -83,6 +83,11 @@ func _physics_process(delta: float) -> void:
 	beetroot_display.text = str(beetroots)
 	suspicion_bar.value = suspicion
 	embarrassment_bar.value = embarrassment
+	
+	if $GolfBall.state == GolfBall.BALL_STATE.AIMABLE:
+		$ZoomReminder.show()
+	else:
+		$ZoomReminder.hide()
 
 func play_tutorial():
 	$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE

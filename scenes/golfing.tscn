@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c28ksxkp4mhey" path="res://scenes/wind_controller.tscn" id="4_rbsrl"]
 [ext_resource type="PackedScene" uid="uid://c4rglsbhdpqbq" path="res://scenes/ui/hp_bars.tscn" id="6_3clis"]
 [ext_resource type="PackedScene" uid="uid://bilvsbbgmcuei" path="res://scenes/ui/dialogue_ui.tscn" id="6_h8u8v"]
+[ext_resource type="Theme" uid="uid://bqpaxtpbevjpb" path="res://scenes/ui/main_ui_theme.tres" id="7_3clis"]
 
 [sub_resource type="Environment" id="Environment_2j3k6"]
 background_mode = 2
@@ -96,6 +97,34 @@ shape = SubResource("WorldBoundaryShape3D_2j3k6")
 
 [node name="HPBars" parent="." unique_id=1232964483 instance=ExtResource("6_3clis")]
 z_index = 1
+
+[node name="ZoomReminder" type="Panel" parent="." unique_id=1996859482]
+modulate = Color(1, 1, 1, 0.78431374)
+custom_minimum_size = Vector2(320, 160)
+anchors_preset = -1
+anchor_left = 0.9
+anchor_top = 0.9
+anchor_right = 0.9
+anchor_bottom = 0.9
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("7_3clis")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ZoomReminder" unique_id=975891810]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 48
+text = "Z or SHIFT to zoom out"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="WinArea" to="." method="_on_win_area_body_entered"]
 [connection signal="body_entered" from="DeathBarrier" to="." method="_on_death_barrier_body_entered"]
