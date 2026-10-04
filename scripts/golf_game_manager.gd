@@ -197,7 +197,9 @@ func next_map():
 		opponent_index += 1
 		if opponent_index > 2:
 			print("win!")
+			$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 			await $Cutscene.play_cutscene("win")
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 		else:
 			$GolfBall.state = GolfBall.BALL_STATE.DIALOGUE
 			await introduce_opponent()
