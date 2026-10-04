@@ -15,4 +15,4 @@ par_count = 4
 metadata/_editor_floor_ = Vector3(0, -2, 0)
 
 [node name="SpawnPoint" type="Marker3D" parent="." unique_id=494625644]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5172124, -0.5444273, 1.5911896)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.517, -0.875, 1.591)
