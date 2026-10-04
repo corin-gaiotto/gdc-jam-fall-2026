@@ -3,7 +3,7 @@ extends Node3D
 class_name GolfGameManager
 
 var suspicion: int = 0
-var embarrassment: int = 19
+var embarrassment: int = 0
 var beetroots: int = 0
 
 var max_suspicion: int = 20
