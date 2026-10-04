@@ -284,6 +284,7 @@ func aiming_controls():
 
 func launching_controls():
 	if Input.is_action_just_pressed("ball_launch"):
+		$BallHit.play()
 		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_X, false)
 		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Y, false)
 		self.set_axis_lock(PhysicsServer3D.BODY_AXIS_LINEAR_Z, false)

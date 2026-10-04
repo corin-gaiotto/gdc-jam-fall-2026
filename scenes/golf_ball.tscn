@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://kbwrracy24gp" path="res://assets/art/ui/icons/icon_mole.png" id="5_baqnq"]
 [ext_resource type="Texture2D" uid="uid://inlpa2a5rvt2" path="res://assets/art/ui/icons/icon_tilt.png" id="6_phv0k"]
 [ext_resource type="FontFile" uid="uid://e3lfq17xn8je" path="res://scenes/ui/Fredoka-SemiBold.ttf" id="9_47x5i"]
+[ext_resource type="AudioStream" uid="uid://cghqjmjgn2wie" path="res://assets/audio/sfx/ball_hit.wav" id="10_1y7y6"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_furft"]
 friction = 0.0
@@ -255,6 +256,9 @@ theme_override_styles/background = SubResource("StyleBoxFlat_tjkbo")
 theme_override_styles/fill = SubResource("StyleBoxFlat_47x5i")
 max_value = 1.0
 fill_mode = 3
+
+[node name="BallHit" type="AudioStreamPlayer3D" parent="." unique_id=229963213]
+stream = ExtResource("10_1y7y6")
 
 [connection signal="pressed" from="CanvasLayer/CheatMenu/WindCheat" to="." method="_on_wind_cheat_pressed"]
 [connection signal="pressed" from="CanvasLayer/CheatMenu/BallCheat" to="." method="_on_ball_cheat_pressed"]
